@@ -6,6 +6,10 @@
     <meta charset="utf-8">
     
     <title>네이버 요약 뉴스</title>
+    <!-- 구글 웹폰트 불러오기(CDN) -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Nanum+Gothic&display=swap" rel="stylesheet">
+
     <!-- 스타일 시트 인터널 방식 -->
     <style>
         /* 스타일 시트를 사용하는 영역
@@ -46,27 +50,216 @@
                 내용만큼 늘어남
            3. padding : 안쪽 여백
            4. border : 경계선
+           -> 두께 종류 색상
+           -> 두께 - 경계선의 두께
+           -> 종류 - solid(선형), dashed(데쉬형), dotted(점선형), ridge(액자형), double(이중선형)
+           -> 색 - 경계선 색
+           (참고 : outline : 두께 종류 색상 -> 박스모델 구성요소가 아님
+           그러나 외곽선만 표시할 경우 많이 사용됨. 주변에 영향 없음)
            5. margin : 바깥 여백
+
+           [ 여백 방향별 설정 : padding / margin ]
+           padding-top, padding-bottom, padding-left, padding- right
+           margin-top, margin-bottom, margin-left, margin- right
+
+           padding : 한개 (4방향 공통)
+           padding : 한개 두개 (위 아래 양쪽)
+           padding : 한개 두개 세개 (위 양쪽 아래)
+           padding : 한개 두개 세게 네개 (4방향 모두 따로)
+           ------------------------------------------------------------------------------------------
+           margin : 한개 (4방향 공통)
+           margin : 한개 두개 (위 아래 양쪽)
+           margin : 한개 두개 세개 (위 양쪽 아래)
+           margin : 한개 두개 세게 네개 (4방향 모두 따로)
+
+           [ 박스의 크기 설정 시 패딩과 보더와의 관계 ]
+           1. 크기 설정 없이 auto인 상태 : 패딩과 보더가 안쪽 포함
+           2. width, height 크기를 줄 경우 패딩과 보더는 바깥으로 나감
+           (박스가 설정된 크기보다 커짐 -> 컨텐트 박스 content-box)
+           3. 만약 width, height 크기를 유지하고 패딩과 보더를 안쪽으로
+              포함 시키려면 아래의 속성으로 셋팅한다
+                box-sizing : border-box(bxb)
+
+           [ 글자 관련 속성 ]
+           1. 글자 크기 -> font-size
+                값 -> 절대 단위 : px, pt (12pt == 16px)
+                      상단 단위 : em, rem, %, vw, vh...
+
+           2. 글자 두께 -> font-weight
+                값 -> lighter(얇게), bold(두껍게)
+                      bolder(더 두껍게), 100~900(9단계)
+                      - 보통 글자체에 따라 지원 여부가 달라짐
+
+           3. 글자체 -> font-family
+                값 -> 기본적으로 PC에 설치된 서페를 적용함
+                      순서대로 콤마로 구분하여 대체체를 설정
+                ex) font-family : 궁서체, 굴림체, Verdana
+                -> 최근에는 웹폰트가 대세
+                   브라우저에서 다운로드로 지원하는 글자체
+
+           4. 글자색 -> color
+                값-> 색상명, 해시코드, rgb, hsl 등
+
+           5. 글자자간 -> letter-spacing
+                값 -> 숫자에 일반단위 사용
+
+           6. 글자 줄 간격 -> line-height
+                값 -> 숫자에 일반 단위 사용 / 숫자만 사용하면 글자 크기의 배수
+
+           7. 글자 단어 간격 -> word-spacing
+                값 -> 숫자에 일반 단위 사용
+
+           8. 글자 스타일 -> font-style
+                값 -> 이탤릭체 : italic
+                      이탤릭체 해체 시 : normal
+
+           9. 글자 데코레이션 -> text-decoration
+                값 -> 글자에 줄 긋기 값
+                underline 밑줄
+                overline 윗줄
+                linethrough 중간줄
+                none 줄없앰
+
+           10. 글자 들여쓰기 -> text-indent
+                값 -> 숫자에 일반 단위 사용
+                      (내어쓰기는 마이너스 숫자)
+
+            참고) https://www.w3schools.com/css/css_font.asp
+
+            [ 웹 색상 표기법 ]
+             1. 해시코드 : #6자리숫자 (두자리가 같을 경우 3자리로 축약표현가능)
+                - 16진수로 표기함(0~f)
+                - 해시코드로 투명도를 주려면 뒤에 2자리 추가하여
+                  8자리 숫자로 투명도를 표현함
+
+            2. RGB 코드 : rgba(red,green,blue,알파값)
+                - 0~255 까지 숫자중 사용
+                - red, green, blue
+                - 마지막 a는 alpha값 즉, 투명도 -> 없으면 생략!
+                (0~1사이의 소숫점값들 사용)
+
+            [ rgba 2가지 표기법 ]
+
+            1. rgba(red색,green색,blue색,alpha값)
+                - alpha값은 투명도 (0~1)
+            2. rgb(red색 green색 blue색 / alpha값%)
+                - alpha값은 투명도 (0%~100%)
+
+            3. HSL 코드 : hsla(hue,saturation,lightness,알파값)
+                - hue(색상), saturation(채도), lightness(명도)
+                - hue는 색상번호, 채도와 명도는 0~100%값 범위로 사용
+                - 마지막은 alpha값 -> 역시 없으면 생략!
+
+            4. 웹색상명: 지정된 컬러명으로 색생을 셋팅
+                예) red, green, blue, pink, navy, 등
+                - 모든 색상은 w3schools.com의 색상참조로 가서확인!
+                https://www.w3schools.com/cssref/css_colors.asp
+
+            [ CSS 적용 우선 순위 ]
+            inline > id > class > type
+            - 인라인이 가장 쌤
+            - 약하 경우에 순위를 가장 높이는 방법 -> important
+            -> 이 방법은 인사인보다도 쌔기 때문에 함부로 쓰면 안됨
         */
+
+        /* 박스 공통 */
+        .part{
+            width : 750px;
+            padding : 10px;
+            border : 2px groove blue;
+            margin: 20px auto;
+            /* 양 쪽을 auto로 주면 블록 박스가 중앙에 온다 */
+        }
 
         /* 상단 영역 */
         header{
             height : 150px;
+            text-align: center;
+            background-color: black;
         }
+
+        /* 타이틀 */
+        header h1{
+            /* 글자 크기 fz */
+            font-size: 50px;
+            /* 글자 두께 fw */
+            font-weight: normal;
+            /* 글자체 ff */
+            font-family: 'Black And White Picture';
+            /* 글자색 c */
+            color: gray;
+            /* 글자자간 ls */
+            letter-spacing: 2px;
+            /* 글자 줄 간격 lh */
+            line-height: 100px;
+            /* 글자 단어 간격 ws */
+            word-spacing: 10px;
+            /* 기본마진 없음 m0 */
+            margin: 0;
+        }
+
+        /* 메뉴GNB */
+        #gnb>a{
+            /* a요소는 ㅈ가지 기본 설정이 있다 -> 글자색, 밑줄 */
+            color: navy;
+            /* 밑줄 없앰 tdn */
+            text-decoration: none;
+            /* 글자 셋팅 한번에 가기 */
+            /* font : 스타일 두께 크기 / 줄 간격 글자체 */
+            /* font : 스두크 / 줄체 */
+            font: bold 20px/40px 'Nanum Gothic';
+            /* 마진 : 위아래 양쪽 */
+            margin: 0 5px;
+        }
+
+        /* 마우스 오버 시*/
+        /* :hover 가상클래스*/
+        /* a+a로 첫 번째는 건너뜀 */
+        #gnb>a+a:hover{
+            /* 글자색 c */
+            color: hotpink;
+            /* 글자 데코레이션 td */
+            text-decoration: overline;
+            /* 외 */
+            outline: 1px solid red;
+        }
+
+        /* 로고 링크 */
+        #gnb img{
+            width: 30px !important;
+            /* 이미지 옆 인라인요소 세로 방향 위치 정렬 속성 va */
+            vertical-align: -9px;
+            /* 특정값 : top, bottom, besline, middle, 수치값 */
+            margin-right: -10px;
+        }
+
         /* 메인 영역 이미지 */
         main img{
             width : 100%;
         }
 
-        /* 박스 공통 */
-        .part{
-            width : 750px;
-            padding : 20px;
-            border : 2px dotted blue;
-            margin: 50px auto;
-            /* 양 쪽을 auto로 주면 블록 박스가 중앙에 온다 */
+        .info address{
+            font-family: 'Nanum Gothic';
+            font-size: 14px;
+            line-height: 2;
+            color: black;
+        }
+
+        /* 하단 영역 */
+        footer{
+            text-align: center;
+            background-color: lightgray;
         }
         
+        /* span요소 */
+        .info address span{
+            font-family: 'Black And White Picture';
+            font-size: 20px;
+            color: white;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+
     </style>
 </head>
 
@@ -89,6 +282,10 @@
         6. section : 내용구분을 위한 영역
         7. article : 독립적인 내용을 구분하는 영역(보통 article이나 section은
            w3c에서 heading 태그(h1~6)를 내용에 사용할 것을 권고함-안써도 무관)
+
+        [ span 요소 : (span-범위) ]
+        - 아무런 특징이 없는 인라인요소
+        - 인라인 컨텐츠를 구분하여 구조화함
 
         [ img요소 : image ]
         - 이미지를 넣어주는 요소
@@ -130,6 +327,10 @@
             속성명 : 값;
         -> 이런 방법을 인라인 CSS라고함
 
+        [ title 속성 ]
+        - 툴팁을 나오게 하는 속성임
+        - 값으로 메시지를 넣으면 마우스 오버 시 툴팁으로 메시지가 보인다
+        - 어떤 요소에도 필요하면 사용 가능
     -->
 
     <!-- 1. 상단 영역 -->
@@ -139,14 +340,14 @@
         <!-- 1-2.GNB 메뉴 -->
         <!-- GNB : Global Navigation Bar -->
         <div id="gnb">
-            <a href="#">
+            <a href="index.htm" title="메인 페이지로 이동">
                 <img src="images/logo.png" alt="네이버 로고" style="width:20px">
             </a>
-            <a href="#">정치</a>
-            <a href="#">경제</a>
-            <a href="#">사회</a>
-            <a href="#">IT/과학</a>
-            <a href="#">TV/연예</a>
+            <a href="sub1.htm">정치</a> |
+            <a href="sub2.htm">경제</a> |
+            <a href="sub3.htm">사회</a> |
+            <a href="sub4.htm">IT/과학</a> |
+            <a href="sub5.htm">TV/연예</a>
         </div>
     </header>
 
@@ -159,11 +360,9 @@
     <footer class="part info">
         <!-- 회사 주소 및 정보 -->
         <address>
-            <p>
             서울시 강만구 역삼동 119 대호B 8F<br>
-            대표 : kosi<br>
+            대표 : <span>kosi</span><br>
             전화 : 010-1111-2222
-            </p>
         </address>
     </footer>
 </body>

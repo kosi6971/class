@@ -1,0 +1,101 @@
+@charset "utf-8"
+/* Info PJ 메인 CSS - main.css */
+
+
+/* 박스 공통 */
+.part{
+    width : 750px;
+    padding : 10px;
+    border : 2px groove blue;
+    margin: 20px auto;
+    /* 양 쪽을 auto로 주면 블록 박스가 중앙에 온다 */
+}
+
+/* 상단 영역 */
+header{
+    height : 150px;
+    text-align: center;
+    background-color: black;
+}
+
+/* 타이틀 */
+header h1{
+    /* 글자 크기 fz */
+    font-size: 50px;
+    /* 글자 두께 fw */
+    font-weight: normal;
+    /* 글자체 ff */
+    font-family: 'Black And White Picture';
+    /* 글자색 c */
+    color: gray;
+    /* 글자자간 ls */
+    letter-spacing: 2px;
+    /* 글자 줄 간격 lh */
+    line-height: 100px;
+    /* 글자 단어 간격 ws */
+    word-spacing: 10px;
+    /* 기본마진 없음 m0 */
+    margin: 0;
+}
+
+/* 메뉴GNB */
+#gnb>a{
+    /* a요소는 ㅈ가지 기본 설정이 있다 -> 글자색, 밑줄 */
+    color: navy;
+    /* 밑줄 없앰 tdn */
+    text-decoration: none;
+    /* 글자 셋팅 한번에 가기 */
+    /* font : 스타일 두께 크기 / 줄 간격 글자체 */
+    /* font : 스두크 / 줄체 */
+    font: bold 20px/40px 'Nanum Gothic';
+    /* 마진 : 위아래 양쪽 */
+    margin: 0 5px;
+}
+
+/* 마우스 오버 시*/
+/* :hover 가상클래스*/
+/* a+a로 첫 번째는 건너뜀 */
+#gnb>a+a:hover{
+    /* 글자색 c */
+    color: hotpink;
+    /* 글자 데코레이션 td */
+    text-decoration: overline;
+    /* 외 */
+    outline: 1px solid red;
+}
+
+/* 로고 링크 */
+#gnb img{
+    width: 30px !important;
+    /* 이미지 옆 인라인요소 세로 방향 위치 정렬 속성 va */
+    vertical-align: -9px;
+    /* 특정값 : top, bottom, besline, middle, 수치값 */
+    margin-right: -10px;
+}
+
+/* 메인 영역 이미지 */
+main img{
+    width : 100%;
+}
+
+.info address{
+    font-family: 'Nanum Gothic';
+    font-size: 14px;
+    line-height: 2;
+    color: black;
+}
+
+/* 하단 영역 */
+footer{
+    text-align: center;
+    background-color: lightgray;
+}
+
+/* span요소 */
+.info address span{
+    font-family: 'Black And White Picture';
+    font-size: 20px;
+    color: white;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
