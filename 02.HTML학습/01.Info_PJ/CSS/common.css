@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* Info PJ 메인 CSS - main.css */
+/* Info PJ 공통 CSS - common.css */
 
 
 /* 박스 공통 */
@@ -71,11 +71,6 @@ header h1{
     vertical-align: -9px;
     /* 특정값 : top, bottom, besline, middle, 수치값 */
     margin-right: -10px;
-}
-
-/* 메인 영역 이미지 */
-main img{
-    width : 100%;
 }
 
 .info address{
