@@ -97,7 +97,25 @@
             dd : 용어 설명
                 (description each term)
             !주의!) dl은 반드시 자삭 요소로 dt, dd를 한 번 이상 사용해야 한다
-    -->
+            
+        4. table 테이블
+            table > tbody(생략 가능) > tr > td
+            table : 박스 부모 요소
+            tr : 테이블 행 요소(table row)
+            td : 테이블 데이터(table data)
+            참고) table tr td 로만 구성한 경우,
+            브라우저 분석기로 보면 table > tbody가 있다.
+            이는 테이블 본문파트를 나타낸다.
+            안써줘도 기본 코딩으로 자동 추가 된다.
+            (원래 테이블은 thead, tbody, tfoot 세 부분으로 구성되어있다)
+
+        [ p요소 : paragraph ]
+        - 문단을 나눌 때 사용하는 요소
+        - 주의 : p요소 내부에 다른 블록 요소를 사용하지 못한다
+          제목 요소인 <h1~6>를 사용하지 못한다
+
+        
+        -->
 
     <!-- 1. 상단 영역 -->
     <header class="part top">
@@ -365,6 +383,57 @@
                     </dd>
             </dl>
         </article>
+
+        <!-- 사진 뉴스(테이블 사용) -->
+        <article class="pnews">
+            <h3>사진 뉴스</h3>
+            <!-- 테이블 구성 : 3행 3열 -->
+            <table>
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <a href="https://n.news.naver.com/mnews/article/293/0000040592" target="_blank">
+                            아기상어와 라인프렌즈가 만났다…<br>
+                            핑크퐁·IPX, 콘텐츠·굿즈 만든다
+                        </a>
+                    </td>
+                    <td>
+                        <a href="https://n.news.naver.com/mnews/article/293/0000040592" target="_blank">
+                            <img src="./images/pn1-1.jpg" alt="사진뉴스1">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>
+                        <a href="https://n.news.naver.com/mnews/article/293/0000040589" target="_blank">
+                            'M자' 벗고 위성통신 탑재,<br>
+                            新 프로까지 확 달라진 아이폰14
+                        </a>
+                    </td>
+                    <td>
+                        <a href="https://n.news.naver.com/mnews/article/293/0000040589" target="_blank">
+                            <img src="./images/pn2-1.jpg" alt="사진뉴스2">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>
+                        <a href="https://n.news.naver.com/mnews/article/293/0000040591" target="_blank">
+                            긴축경영 돌입한 스냅…<br>
+                            “내년 매출 목표는 8조원”
+                        </a>
+                    </td>
+                    <td>
+                        <a href="https://n.news.naver.com/mnews/article/293/0000040591" target="_blank">
+                            <img src="./images/pn3-1.png" alt="사진뉴스3">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </article>
+
     </main>
 
     <!-- 3. 하단 영역 -->

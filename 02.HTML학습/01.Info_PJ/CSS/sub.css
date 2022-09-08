@@ -15,8 +15,6 @@
 /* @import url(파일 주소); */
 @import url(common.css);
 
-/*  */
-
 /* 메인 영역 박스 */
 .main{
     padding: 15px;
@@ -69,11 +67,269 @@
     /* width: 100%; */
 }
 
+/* 기사 이미지 설명글 small */
+.afig small{
+    font-family: gulim;
+    color: gray;
+}
+
 /* 2-4. 기사내용 */
+.arti p{
+    font-family: 'nanum gothic', gulim;
+    font-size: 15px;
+    line-height: 17px;
+    padding: 0 10px;
+
+}
+
+/* 중간 글자 표시 박스 */
+.arti mark{
+    display: block;
+    background-color: #CCC;
+    text-align: center;
+    line-height: 3;
+    font-family: 'nanum gothic';
+    font-size: 20px;
+    font-weight: bold;
+    border-top: 2px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+/* i요소 변경 */
+.arti i{
+    font-style: normal;
+    font-weight: bold;
+}
+
+/* q요소 변경 */
+.arti q{
+    color: darkgreen;
+    font-weight: bold;
+}
+
+/* del요소 변경 */
+.arti del{
+    color: lightpink;
+}
 
 
 /* 2-5. 기자 정보 */
-
+.rinfo{
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
 
 /* 2-6. 기사 원문 */
+.org a{
+    padding: 10px;
+    font-size: 20px;
+    color: lightcoral;
+    text-decoration: none;
+    border: 1px dashed lightseagreen;
+}
 
+/* 공통 박스 article */
+.main article{
+    border-top: 1px dashed #000;
+    margin-top: 10px;
+    padding: 15px;
+}
+
+/* 공통 title h3 */
+.main h3{
+    font-family: 'Black And White Picture';
+    font-weight: normal;
+    font-size: 25px;
+    padding-left: 20px;
+}
+
+/* 블록 인용구 박스 */
+.bquote blockquote{
+    margin: 0;
+    padding: 5px;
+    /* float설정으로 망가진 부모 박스는 overflow: hidden;으로 고쳐준다 */
+    /* 넘치는 자식요소 숨기기 */
+    overflow: hidden;
+
+    /* 글자 설정 */
+    /* font: 글자 크기/라인 간격 글꼴 */
+    font: 17px/1.5 'nanum gocthic';
+    /* 글자 정렬 */
+    /* justify 양쪽 정렬 */
+    text-align: justify;
+    /* 들어쓰기 */
+    text-indent: 20px;
+}
+
+.bquote img{
+    /* 
+    float속성
+    - 인라인요소에서 사용하면 선택된 요소의 위치를 잡고
+      그 왼쪽이나 오른쪽으로 다른 컨텐츠가 흘러가게 한다.
+    - 특히 이미지에서 글자가를 오른쪽이나 왼쪽으로 흘러가게한다
+    - 기본적으로 이미지 하단에 한 줄만 글자가 흘러가게 되어있다
+      (블록에서 float은 별도로 다룸)
+      -> 값에 따라
+      left - 나는 왼 쪽, 다른건 오른 쪽
+      right - 나는 오른 쪽, 다른건 왼 쪽
+      (인라인요소를 오른 쪽 끝으로 보낼 때도 사용한다)
+    */
+    float: left;
+    border-radius: 15px;
+    margin-right: 15px;
+}
+
+.desc small{
+    display: block;
+    padding:0 20px;
+}
+
+main .desc{
+    border-bottom: 2px dashed #CCC;
+    padding-bottom: 40px;
+    margin-bottom: 20px;
+}
+
+.work{
+    background-color: yellowgreen;
+    text-align: center;
+}
+
+.work cite{
+    color: red;
+    font-weight: bold;
+    font-family: 'black and white picture';
+    font-size: 20px;
+    /* cite요소 기본 이탤릭 해제 */
+    font-style: normal;
+}
+
+/* 
+메인 컨텐츠 아래 a요소
+주의사항 - 글자색, 밑줄은 반드시 a요소에서 처리할 것
+ */
+main a{
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+    font-family: 'nanum gothic';
+    line-height: 2.5;
+    letter-spacing: -1px;
+}
+
+/* a요소 마우스 오버 시 */
+/* 가상 클래스 */
+main a:hover{
+    color: greenyellow;
+    /* 글자 그림자 */
+    /* text-shadow: x축 y축 흐림 색; */
+    text-shadow: 1px 1px 1px #000;
+}
+
+/* ul, ol 블릿, 숫자 타입 변경 */
+main ul{
+    /*
+    리스트 타입
+    - square : 사각형
+    - disc : 원형
+    - circle : 빈원
+    */
+    list-style-type: square;
+}
+
+main ol{
+    list-style-type: upper-roman;
+}
+
+/* 
+    [ 자식 요소 순번 선택하기 가상 요소 ]
+    -> 태그가 한 종류 일 때 (예: ul > li, ol > li)
+    :first-child : 첫 번째 자식 요소
+    :nth-child(n) : n 번째 자식 요소
+    ::last-child 마지막째 자식 요소
+
+    -> 태그가 여러 종류일 때 (예: dl > dt + dd)
+    :first-of-type : 첫 번째 자식 요소
+    :nth-child(n) : n 번째 자식 요소
+    :last-of-type : 마지막 자식 요소
+*/
+
+/* li 순서 별 글자색 변경하기 */
+main ul li:first-child a{
+    color: rebeccapurple;
+}
+
+main ul li:nth-child(2) a{
+    color: blue;
+}
+
+/* 분야 별 뉴스dt */
+.secnews dt{
+    margin-top: 30px;
+    padding: 5px;
+    font-size: 22px;
+    font-family: 'black and white picture';
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.476);
+    border: 3px dotted skyblue;
+    /* 한 줄에 오고 디자인은 block처럼 적용 */
+    display: inline-block;
+    /* 둥근 모서리 */
+    border-radius: 50%;
+}
+
+/* dt 순서 별 글자색 변경 */
+.secnews dt:first-of-type{
+    color: green;
+}
+
+.secnews dt:nth-of-type(2){
+    color: gray;
+}
+
+.secnews dt:last-of-type{
+    color: hotpink
+}
+
+/* 사진 뉴스 박스 */
+.pnews table{
+    /* 마영오! - 블록요소, 테이블 중앙정렬 */
+    margin: 0 auto;
+}
+
+.pnews td:first-child{
+    width: 50px;
+    height: 70px;
+    background-color: gray;
+    text-align: center;
+}
+
+.pnews td:nth-child(2){
+    background-color: #CCC;
+    padding-right: 116px;
+    padding-left: 20px;
+
+}
+
+.pnews img{
+    width: 151px;
+    height: 103px;
+    /* td에서 이미지 세로 중앙 정렬 */
+    vertical-align: middle;
+    /* 
+        원래 vertical-align은 인라인 요소 간 세로 정렬을 셋팅하는 속성인데
+        테이블의 td에서 이 속성은 td의 세로 정렬에 사용할 수 있다.
+        여기서 높이값이 지정되지 않은 상태에서 middle값을 주면 아래 쪽 빈 공간이 사라진다
+    */
+}
+
+/* 사진 뉴스 테이블 설정 */
+.pnews table{
+
+    /* 
+    테이블 기본 간격
+        border-collapse: collapse; - 간격 삭제
+        border-spacing: @px; - 간격 설정 - !주의! : seperate상태에서만 설정
+    */
+    border-spacing: 7px;
+}
