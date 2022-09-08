@@ -91,8 +91,8 @@
     font-family: 'nanum gothic';
     font-size: 20px;
     font-weight: bold;
-    border-top: 2px solid gray;
-    border-bottom: 1px solid gray;
+    border-top: 5px solid gray;
+    border-bottom: 5px solid gray;
 }
 
 /* i요소 변경 */
@@ -108,30 +108,41 @@
 }
 
 /* del요소 변경 */
-.arti del{
-    color: lightpink;
+main del{
+    color: lightslategray;
 }
 
 
 /* 2-5. 기자 정보 */
 .rinfo{
-    padding: 10px;
+    border: 3px dashed darkgray;
+    display: inline;
+    
+    margin: 15px;
+    padding: 5px;
     font-size: 14px;
     font-weight: bold;
 }
 
 /* 2-6. 기사 원문 */
 .org a{
-    padding: 10px;
-    font-size: 20px;
-    color: lightcoral;
+    line-height: initial;
+    float:right;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 15px;
+    color: rgba(41, 61, 87, 0.849);
     text-decoration: none;
-    border: 1px dashed lightseagreen;
+    border: 3px double lightseagreen;
+}
+
+.org{
+    overflow: hidden;
 }
 
 /* 공통 박스 article */
 .main article{
-    border-top: 1px dashed #000;
+    border-top: 2px dashed #CCC;
     margin-top: 10px;
     padding: 15px;
 }
@@ -214,7 +225,7 @@ main a{
     color: black;
     font-size: 17px;
     font-family: 'nanum gothic';
-    line-height: 2.5;
+    line-height: 2.5;   
     letter-spacing: -1px;
 }
 
@@ -332,4 +343,25 @@ main ul li:nth-child(2) a{
         border-spacing: @px; - 간격 설정 - !주의! : seperate상태에서만 설정
     */
     border-spacing: 7px;
+}
+
+.girl table{
+    margin: 0 auto;
+}
+
+.girl td{
+    border: 1px solid;
+    
+}
+.girl img{
+    width: 10px;
+}
+
+.girl td:nth-child(1){
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+.girl td:nth-child(2){
+    text-align: center;
 }
