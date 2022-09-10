@@ -347,6 +347,7 @@ main ul li:nth-child(2) a{
 
 .girl table{
     margin: 0 auto;
+    
 }
 
 .girl td{
@@ -354,14 +355,15 @@ main ul li:nth-child(2) a{
     
 }
 .girl img{
-    width: 10px;
+    width: 13px;
 }
 
 .girl td:nth-child(1){
     text-align: center;
     background-color: black;
     color: white;
+    font-family: '';
 }
 .girl td:nth-child(2){
-    text-align: center;
+    text-align: left;
 }
