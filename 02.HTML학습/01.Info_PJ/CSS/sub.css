@@ -381,7 +381,12 @@ main ul li:nth-child(2) a{
     color: white;
 }
 
-table{
+.girl table{
+    margin: 0 auto;
+    
+}
+
+.with table{
     margin: 0 auto;
     
 }
