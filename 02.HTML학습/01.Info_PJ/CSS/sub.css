@@ -126,10 +126,8 @@ main del{
 
 /* 2-6. 기사 원문 */
 .org a{
-    line-height: initial;
     float:right;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 0px 10px;
     font-size: 15px;
     color: rgba(41, 61, 87, 0.849);
     text-decoration: none;
@@ -225,7 +223,6 @@ main a{
     color: black;
     font-size: 17px;
     font-family: 'nanum gothic';
-    line-height: 2.5;   
     letter-spacing: -1px;
 }
 
@@ -345,7 +342,7 @@ main ul li:nth-child(2) a{
     border-spacing: 7px;
 }
 
-.girl table{
+table{
     margin: 0 auto;
     
 }
@@ -362,8 +359,29 @@ main ul li:nth-child(2) a{
     text-align: center;
     background-color: black;
     color: white;
-    font-family: '';
+    padding: 3px 20px;
 }
+
 .girl td:nth-child(2){
     text-align: left;
+}
+
+.with img{
+    border-radius : 5px;
+    padding-top: 1px;
+}
+
+.with{
+    text-align: center;
+    border: 3px solid;
+    background-color: black;
+}
+
+.with td{
+    border: 1px solid lightgray;
+    background-color: gray;
+}
+
+.with a{
+    color: white;
 }
