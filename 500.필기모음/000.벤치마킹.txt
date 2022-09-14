@@ -52,3 +52,9 @@ https://www.henrynorthington.com/
 2) 대안 : 사이드에 인디케이터를 만들어서 스크롤하는 동안 해당 내용을 표시해 주고
    클릭하면 한번에 원하는 내용으로 이동할 수 있게 해주면 사용성이 개선될 것이다.
 3) 스크롤 시 가로 방향으로 이동하는 기술은 우리가 구현할 것이다.
+
+https://cpmgt.com.au/
+
+https://nextpage.agency/
+
+https://svitlo-production.com/
