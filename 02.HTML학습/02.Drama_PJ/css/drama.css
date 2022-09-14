@@ -1,2 +1,125 @@
 @charset "utf-8";
 /* 한국최신드라마 리스트 CSS - drama.css */
+
+/* 웹폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet&display=swap');
+/* 
+    font-family: 'Hahmlet', serif;
+*/
+
+/* 초기화 */
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+.tbl{
+    font-family: 'Hahmlet';
+    color: #222;
+    border-collapse: collapse;
+}
+
+/* 드라마 리스트 테이블 */
+#drama{
+    font-size: 24px;
+    /* 가로 중앙 정렬 */
+    margin: 0 auto;
+    /* 테이블 width지정이 없으면 내용만큼 블어난다
+       좁으며 아래로 내용이 줄바꿈이 됩니다 */
+    width: 1000px;
+}
+
+#drama caption{
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    padding: 50px 0 20px;
+}
+
+#drama td, #drama th{
+    padding: 8px 10px;
+
+}
+
+#drama tbody td{
+    border-bottom: 1px solid #ccc;
+}
+
+#drama thead th{
+    border-top: 2px solid #555;
+    border-bottom: 2px solid #555;
+}
+
+#drama tbody tr:last-child{
+    border-bottom: 2px solid #555;
+}
+
+/* even - 짝수
+   odd - 홀수 */
+#drama tbody tr:nth-child(even) td{
+    background-color: rgb(238, 238, 238);
+}
+
+/* tbody의 첫번째 td 중앙 정렬 */
+#drama tbody td:first-child{
+    text-align: center;
+}
+
+#drama tfoot td{
+    text-align: center;
+    padding: 45px 0;
+}
+
+#drama tbody td:nth-child(2) a{
+    text-decoration: none;
+    color: #222;
+}
+
+#drama tbody td:nth-child(2) a:hover{
+    text-decoration: underline;
+    color: blueviolet;
+    text-decoration-style: wavy;
+    font-family: '굴림';
+}
+
+#drama tfoot a{
+    text-decoration: none;
+    color: #222;
+}
+
+#drama tfoot a:hover{
+    text-decoration: underline;
+    color: blueviolet;
+    text-decoration-style: wavy;
+    font-family: '굴림';
+}
+
+div.gubun{
+    width: 1000px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    overflow: hidden;
+}
+
+table#gubun{
+    font-size: 20px;
+    border: 1px solid #555;
+    float: right;
+}
+
+table#gubun td{
+    
+    padding: 5px;
+}
+
+/* 구분 테이블 첫 번째 tr의 첫번째 td의 오른쪽 점선 넣기 */
+#gubun tr:first-child td:first-child{
+    border-right: 1px dashed #555;
+}
+
+/* 구분 테이블 두번째 tr 마지막 tr까지 즉, 앞에 tr이 있는 tr형제 요소만 선책하여 보더 상단 넣기
+앞에 tr이 있는 tr -> tr+tr */
+
+#gubun tr+tr td{
+    border-top: 1px dotted #999;
+}
