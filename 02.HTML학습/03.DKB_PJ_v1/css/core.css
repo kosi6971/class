@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* 도깨비 PJ 공통클래스/웹폰트 CSS - core.css */
+
+/* 웹폰트 CDN */
+@import url('https://fonts.googleapis.com/css2?family=Single+Day&family=Yeon+Sung&family=ZCOOL+QingKe+HuangYou&family=Nanum+Gothic&display=swap');
+/* 
+    font-family: 'Single Day', cursive;
+    font-family: 'Yeon Sung', cursive;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    font-family: 'Nanum Gothic', sans-serif;
+*/
+
+body{
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* 속박스 class */
+.ibx{
+    /* 최대 가로 크기 1200px이면 싸고 있는 박스가 이것보다 작이질 경우,
+    auto로 자동 전환되어 가로 스크롤이 안 생긴다. */
+    max-width: 1200px;
+    margin: 0 auto;
+}
