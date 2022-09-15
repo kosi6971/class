@@ -6,6 +6,17 @@
 @import url(reset.css);
 @import url(core.css);
 @import url(common.css);
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+/* 
+    1. 제목체
+    font-family: 'Noto Serif KR';
+    2. 내용체
+    font-family: 'Nanum Brush Script';
+    3. 한자체
+    font-family: 'Ma Shan Zheng';
+ */
 
 /* 공사중 표시 */
 body * {
@@ -24,4 +35,109 @@ body{
         고정의 기준은 보이는 화면이다
         스크롤해도 고정된 배경은 움직이지 않는다
      */
+}
+
+/* 2. 메인 영역 */
+.cont{
+    /* 최소 높이는 내용이 없어도 설정된 크기를 유지하다 내용이 많아지면 늘어난다 */
+    min-height: 969px;
+    /* 넘치는 자식 요소 숨기기 */
+    /*
+    이거 왜 했지?
+    - 첫 번쨰 자식 요소 마진 탑 값이 부모 요소 바깥으로
+      미는 기본 특성이 있으므로 이것을 포함하기 위해 설정
+    */
+    overflow: hidden;
+}
+
+/* 전체 캐릭터 박스 */
+.cbx{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 500px;
+    margin-bottom: 100px;
+}
+
+/* 자식 요소의 float으로 해제 설정 가상요소 after */
+.cbx::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/* 캐릭터 박스 */
+.cat{
+    /* 가로 크기 4등분 - 25% - 1%(양쪽 margin) */
+    width: 24%;
+    /* 0.5 == .5 (0샐략 가능) */
+    margin: 0 .5%;
+
+    /* 블록박스 옆으로 흐르게 */
+    /* left값은 "나는 왼 쪽 너는 오른 쪽" */
+    float: left;
+    
+
+}
+
+/* 캐릭터 이미지 - .cai 지계자식 img만 선택 */
+.ci > img{
+    width: 100%;
+}
+
+.ci figcaption{
+    text-align: center;
+    margin-top: -20%;
+}
+
+.ci figcaption img{
+    /*
+        값이 %단위일 경우 기준이 무엇인지 질문하다
+        -> 여기서는 싸고 있는 figcation 박스 가로 크기를 기준
+    */
+    width: 40%;
+}
+
+/* 첫 번째 캐릭터 이름 이미지 숨기기 */
+.ci figcaption img:nth-child(1){
+    display: none;
+}
+
+/* 캐릭터 박스 .cat에 오버 시 */
+.cat:hover .ci figcaption img:nth-child(1){
+    display: inline;
+}
+
+.cat:hover .ci figcaption img:nth-child(2){
+    display: none;
+}
+
+.cd h3{
+    font-family: 'Ma Shan Zheng', 'Noto Serif KR';
+    font-size: 17px;
+    font-weight: normal;
+    padding: 15px 10px 5px;
+}
+
+.cd p{
+    font-family: 'Ma Shan Zheng', 'Nanum Brush Script';
+    font-size: 18px;
+    line-height: 1.2;
+    padding: 10px;
+    /* 양쪽 정렬 */
+    text-align: justify;
+}
+
+.cd{
+    height: 250px;
+    /* 넘치는 내용 자동 스크롤 */
+    /* 
+        overflow 속성
+        - visible 넘쳐도 보임(기본값)
+        - hidden 넘치는 요소 숨김
+        - scroll 스코롤바 생김(x,y 두 방향 모두 생김, overflow-y로 해야 y만 생김)
+        - auto 스코롤바 생김(y 방향만)
+    */
+    overflow: auto;
+    margin-top: 15px;
+    background: url(../images/eachBG.jpg) no-repeat center/cover;
 }
