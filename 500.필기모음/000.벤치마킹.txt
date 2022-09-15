@@ -65,3 +65,8 @@ https://cpmgt.com.au/
 https://nextpage.agency/
 
 https://svitlo-production.com/
+
+https://atelier.net/social-mobility/
+가운데 이미지가 떨어지면서 중간 부분에 구멍으로 들어가 사라집니다.
+그 외에는 대부분 글자만이 가득하고 header에 로고와 메뉴를 만들었고 footer에 로그인창을
+만들었습니다.
