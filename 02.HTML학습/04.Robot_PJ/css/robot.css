@@ -1,13 +1,33 @@
 @charset "utf-8";
 /* 로봇 PJ CSS - robot.css */
 
-body *{
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Ms+Madi&family=Nabla&family=Rokkitt:wght@800&display=swap');
+
+/*
+    font-family: 'Bungee Spice', cursive;
+    font-family: 'Ms Madi', cursive;
+    font-family: 'Nabla', cursive;
+    font-family: 'Rokkitt', serif;
+    font-family: 'Black Ops One', cursive;
+    font-family: 'Orbitron', sans-serif;
+*/
+
+/* body *{
     outline: 2px dashed lime;
-}
+} */
 
 html, body, h1, h2, h3, ul, ol{
     margin: 0;
     padding: 0;
+}
+
+html{
+    /* 
+        내부 아이디 요소로 스크롤 위치 이동 시 스크롤 애니메이션 처리가 되도록
+        설정하는 속성. html에 셋팅하면 전체 페이지 스크롤에 적용된다
+        (JS사용없이 하는 방법)
+     */
+    scroll-behavior: smooth;
 }
 
 body{
@@ -23,6 +43,84 @@ body{
 /* 메탈소재2 배경 */
 .mt2{
     background: url(../images/metal02.jpg) no-repeat center/cover;
+}
+
+/* 빛이 나는 로봇 */
+.brRo, .brRo::after, .brRo::before{
+    /* 박스 그림자 : x y blur spread 색 */
+    box-shadow: 0 0 10px 5px cyan, 0 0 20px 10px rgb(13, 39, 39);
+    /* 박스 그림자를 밝은색으로 주면 빛나는 효과를 줄 수 있음 */
+}
+
+/* 1. 상단영역 */
+.logo{
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    width: 200px;
+    height: 200px;
+    color: aquamarine;
+    font: 45px/200px 'Nabla';
+    border: 2px solid #ccc;
+    border-radius: 500%;
+    text-align: center;
+    background: rgb(191, 104, 241) url(../images/robot_03.png) no-repeat center 10px/160px;
+    text-shadow: 2px 2px 2px #000;
+    box-shadow: inset 0 0 20px 5px #000, 0 0 20px 5px rgb(30, 90, 168);
+}
+
+.link{
+    position: absolute;
+    top: 100px;
+    right: 50px;
+}
+
+.link a{
+    color: greenyellow;
+    text-decoration: none;
+    font: 50px 'Ms Madi';
+}
+
+.link a:hover{
+    color: red;
+    text-decoration: underline;
+    font: 60px 'Ms Madi';
+}
+
+.btnTop{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+    border-radius: 50%;
+    border: 5px outset aqua;
+}
+
+.btnTop:hover{
+    background-color: rgb(255, 170, 73);
+    border-style: inset;
+}
+
+.btnTop a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: rgb(0, 107, 32);
+    font: 30px/90px 'Ms Madi';
+    /* 
+        line-height가 높이값인 100px이 아니고 90px인 이유는 버튼요소가
+        기본적으로 box-sizing:border-box이다
+        이것은 패딩과 보더가 내부에 포함된다
+        보더크기가 5px이므로 높이값 100px안에 5px+5px=10px이 포함되어서
+        10px을 뺀 90px로 설정한다
+    */
+}
+
+.btnTop a:hover{
+    color: rgb(2, 202, 62);
 }
 
 /* 2-1. 로봇 박스 */
@@ -324,4 +422,107 @@ body{
     border: none;
     width: 213px;
     height: 138px;
+}
+
+/* 2-2. 로봇 설명 박스 */
+.dcbx{
+    /* 최대 가로 크기 */
+    max-width: 800px;
+    margin: 0 auto;
+    /* 하단 공간 */
+    margin-bottom: 200px;
+    /* 반투명 배경 */
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-shadow: 1px 1px 1px #000;
+    padding: 15px 30px;
+    border: 3px solid white;
+    border-radius: 20px;
+    /* 박스 그림자 - 콤마로 연결하면 다중 셋팅 가능 - inset은 내부 그림자*/
+    box-shadow: inset 0 0 20px blue, inset 0 0 50px 10px cyan;
+}
+/* 2-2-1. 제목 */
+.dcbx h2{
+    /* 스티키 포지션 적용 */
+    position: sticky;
+    top: 15px;
+    text-align: center;
+    color: greenyellow;
+    font-size: 35px;
+    background-color: rgba(255, 255, 255, 0.514);
+    border-radius: 20px;
+    font-family: 'Rokkitt', serif;
+}
+
+/* 2-2-2. 로봇 정보 출처 */
+.dcbx small{
+    /* inline은 text-align: center;가 적용되지 않아 block으로 변경 */
+    display: block;
+    text-align: center;
+    color: yellow;
+    font-size: 12px;
+    padding: 10px;
+    font-family: 'Rokkitt', serif;
+}
+
+/* 2-2-3. 설명 문단 */
+.dcbx p{
+    font-size: 15px;
+    /* 줄 간격 */
+    line-height: 1.8;
+    /* 글자 간격 */
+    letter-spacing: 1px;
+    /* 단어 간격 */
+    word-spacing: 2px;
+    font-family: 'Black Ops One', cursive;
+
+    /* 가독성을 위한 다단설정 */
+    /* 다단표시(다중열속성) */
+
+    /* 다중열 개수 */
+    column-count: 3;
+    /* 다중열 구분선 - border색상과 유사 */
+    column-rule: 5px dotted lightgreen;
+    /* 다중열 사이 간격 */
+    column-gap: 55px;
+    /* 양쪽 정렬 justify - 단어 단위로 잘리기 때문에 단어 간격이 일정하지 않고 공백이 많다*/
+    text-align: justify;
+    /* 단어 깨기 - 1byte문자인 영어는 깨주어야 공백이 생지기 않는다(2byte문자는 상관 없다) */
+    word-break: break-all;
+    /* 첫 글자 들여쓰기 */
+    text-indent: 20px;
+}
+
+/* 설명 문단 첫 글자 가상요소로 글자 디자인 변경하기 */
+.dcbx p::first-letter{
+    font-size: 30px;
+    color: hotpink;
+    font-weight: bold;
+}
+
+/* 3. 하단 영역 */
+.info{
+    /* 패딩 영역 */
+    padding: 50px;
+    text-align: center;
+    font: 30px 'Bungee Spice';
+    text-shadow: 2px 2px 2px #000;
+    background-color: rgba(0, 0, 0, 0.486);
+}
+
+.info span::before{
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    /* 배경 세부 설정을 한번에 */
+    background: pink url(../images/robot_03.png) no-repeat;
+    background-position: -12px 0;
+    background-size: 60px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+
+    /* 인라인요소간 세로 정렬 */
+    vertical-align: -5px;
+    margin-right: 7px;
 }

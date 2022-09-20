@@ -68,8 +68,13 @@
         /* 원 */
         span {
             position: relative;
+            top: 0;
             left: 0;
-            /* 현재위치로 부터 이동! */
+            /*
+                현재위치로 부터 이동!
+                트랜지션에 초기값이 있어야 나오는 겨웅가 있음
+                초기값이 없으면 변경 애니가 적용되지 않음
+            */
             display: block;
             width: 200px;
             height: 200px;
@@ -77,44 +82,73 @@
             background-color: #ff0;
             border-radius: 50%;
         }
-        #tr4 span{
-            position: relative;
-            left: 0;
-            /* 현재위치로 부터 이동! */
-            display: block;
-            width: 200px;
-            height: 200px;
-            border: none;
-            background-color: transparent;
-        }
-        #tr4 span b{
-            display: block;
-            width: 200px;
-            height: 200px;
-            border: 5px solid #000;
-            background-color: #ff0;
-            border-radius: 50%;
-        }
-
 
         /* #tr1에 트랜지션 설정 */
-        /* 트랜지션을 hover가 아닌 원래 요소에 주면
-        양방향 모두 동시적용된다! */
-        
+        /* 트랜지션을 hover가 아닌 원래 요소에 주면 양방향 모두 동시 적용 */
+        #tr1 span{
+            transition: 2s;
+            /* 
+                앞에 속성을 생략하면 all과 같다
+                즉, 모든 속성이 변경될 때 애니메이션을 한다
+            */
+        }
+
+        #tr1:hover span{
+            left: 50%;
+            background-color: red;
+        }
+
+        /* #tr2에 트랜지션 설정을 주지 않음 */
+        #tr2 span{
+            background-color: orange;
+        }
+        /* 오버시에만 트랜지션을 주면 오버 시에만 적용 */
+        #tr2:hover span{
+            left: 70%;
+            background-color: lime;
+            transition: all 3s;
+        }
 
         /* #tr3에 트랜지션 설정 */
-        
-        
+        #tr3 span{
+            /* 오버 시에도 트랜지션을 설정할 경우, 원본에 설정한 트랜지션은 돌아올 때 적용됨 */
+            /* 모든 속성이 5초동안 처음과 마지막에 천천히 2초 후 애니 시작 */
+            transition: all 5s ease-in-out 2s;
+        }
+        /* 오버 시 트랜지션 별도 설정 */
+        #tr3:hover span{
+            left: 60%;
+            background-color: hotpink;
+            /* 오버 시 원을 사각형으로 */
+            border-radius: 0;
+            /* 오버 시에만 적용 -> ease-out */
+            transition: 1s ease-out;
+        }
+
         /* #tr4에 트랜지션 설정 */
         /* 
-            여러가지 속성을 별도로 트랜지션 주고자 할 경우
-            속시이지 순으로 셋팅하고 콤마로 구분한다!
+            여러가지 속성을 별도로 트랜지션을 주고자 할 경우
+            in-out순으로 셋팅하고 콤마로 구분한다
         */
-        
-        /* 오버시 span 변경 */
-        
-       
-        
+        #tr4 span{
+            transition: left 5s ease-in-out,
+            /* left속성을 5초간 처음과 마지막에 천천히 애니 */
+            background-color 2s ease-out 4s,
+            /* 배경색 속성을 2초간 마지막에 천천히 4초 후 애니 */
+            border-radius 3s linear 5s,
+            /* 둥근 모서리 속성을 3초간 등속도로 5초 후 애니 */
+            top 1s ease-in-out 8s;
+            /* top속성을 1초간 처음과 마지막에 천천히 8초 후 애니 */
+        }
+        /* 오버 시 span 변경 */
+        #tr4:hover span{
+            left: 70%;
+            background-color: darkviolet;
+            border-radius: 0;
+            top: -100px;
+        }
+
+
     </style>
 </head>
 
@@ -138,7 +172,7 @@
 
     <h2>4.원본에 트랜지션을 각 속성별로 다르게 준다</h2>
     <div id="tr4">
-        <span><b></b></span>
+        <span></span>
     </div>
 </body>
 
