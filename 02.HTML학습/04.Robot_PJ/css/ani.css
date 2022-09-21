@@ -1,0 +1,238 @@
+@charset "utf-8";
+/* 로봇PJ 애니메이션 CSS - ani.css */
+
+/***************************************************** 
+    [ CSS로 애니메이션 하기 ]
+    - 시간에 따라 CSS설정이 변경되어 애니메이션
+    되도록 키프레임을 설정하고 이것을 호출함으로
+    의도된 연출을 구현하는 것. 
+    ->>> 이것이 CSS 애니메이션이다!
+    [ 애니메이션 키프레임 만들기 ]
+    - 키프레임이란? 애니메이션 장면을 넣는 코드
+    1. 두장면 애니메이션
+    @keyframes 키프레임명{
+        from{시작CSS}
+        to{끝나는CSS}
+    }
+    또는
+    @keyframes 키프레임명{
+        0%{시작CSS}
+        100%{끝나는CSS}
+    }
+    -> 만약 from 설정이 초기설정과 같다면
+        from을 생략할 수 있다!
+    2. 여러장면 키프레임
+    @keyframes 키프레임명{
+        0%{CSS설정}
+        10%{CSS설정}
+        20%{CSS설정}
+        ...
+        70%{CSS설정}
+        80%{CSS설정}
+        90%{CSS설정}
+        100%{CSS설정}
+    }
+    (1) 장면에 대한 시간계산은 어떻게 하나?
+    -> 전체시간 * 설정된% / 100
+    (2) 전체 애니메이션 시간은 언제 셋팅하나?
+    -> 호출시에 셋팅!
+    [ 설정된 키프레임 호출하는 방법 ]
+    animation: 이시이지반방마
+    (이름 시간 이징 지연 반복 방향 마지막상태)
+    1. 이름(animation-name) : 키프레임 이름
+    2. 시간(animation-duration) : 애니메이션 동작시간
+        -> 초단위(s)
+    3. 이징(animation-timing-function) : easing가속도
+    4. 지연(animation-delay) : 애니메이션 지연시간(s)
+    5. 반복(animation-iteration-count) : 애니메이션 반복
+        - 기본값 1, 숫자를 쓰면 숫자만큼 반복
+        - 영원히 infinite(인피니트)
+    6. 방향(animation-direction) : 시작 -> 끝
+        - 두번이상 반복할 경우 반대경로로 애니메이션 설정가능
+        -> alternate : 시작 -> 끝 , 끝 -> 시작
+    7. 마지막 상태(animation-fill-mode) :
+        - 애니메이션이 끝났을때 처음으로 돌아가는게 기본!
+        -> forwards (앞쪽에...즉, 애니메이션 끝장면으로 마무리!)
+        -> 기본값 : backwards(뒤쪽으로, 즉 처음으로!)
+        -> 유의사항 : infinite(영원히)일때는 해당사항없음!
+*************************************************************/
+
+
+/* 1. 로고 */
+.logo {
+    /*      [  정중앙 이동하기 : 방법1 ]
+        방법: 50%씩 top,left를 밀고
+        자신의 크기의 절반씩 반대방향으로이동함
+
+        [ CSS계산함수 ]
+        calc(계산식) -> 4칙연산가능
+        - 주의 1 : 뺄셈 기호 앞 뒤 공백 필수(곱셈, 나늣셈 기호는 붙여도 써도 된다)
+        - 주의 2 :  숫자에 반드시 단위가 있어야한다(더하기/빼기에서)
+        
+        calc(50% - 특정px)
+        ->>주의: 마이너스 기호 앞뒤를 반드시 띄어쓸것!
+    */
+
+    /* top: calc(50% - 102px);
+    left: calc(50% - 102px); */
+
+    /* 로고는 204px이므로 절반은 102px */
+
+    /* 
+        [ 정중앙 이동하기 : 방법 2 ]
+        - top, left값을 50%로 설정한 후
+        -> transform: translate(-50%, -50%)
+        즉, 현재 위치에서 내 크기의 절반만큼 왼쪽, 윗쪽을호 이동
+    */
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+
+    /* 트랜스폼 스케일 2배 확대 */
+    /* transform: scale(2); */
+
+    /* 애니메이션 */
+    /* animation:
+    중앙에서 왼쪽 위로 이동
+    logoac1 2s ease-in-out 1s forwards,
+    이동 후 좌 우로 흔들리는 효과
+    logoac2 0.5s ease-in-out 3s infinite alternate; */
+
+    /* 나만의 작업 */
+    top: 50px;
+    left: 50px;
+    transform: scale(0);
+    animation: logoac1 1s ease-in-out 1s forwards,
+    logoac2 0.5s ease-in-out 2s infinite alternate;
+}
+
+/* 로고 애니 키프레임 */
+@keyframes logoac1 {
+    /* 초기 설정이 from이므로 생략 */
+    /* 80%{
+        원래 위치와 크기로
+        top: 50px;
+        left: 50px;
+        transform: scale(1) rotate(0deg);
+    }
+    100%{
+        회전 위치를 맞춰준다
+        top: 50px;
+        left: 50px;
+        transform: scale(1) rotate(20deg);
+    } */
+
+    /* 나만의 작업 */ 
+    60%{
+        transform: scale(1.5);
+    }
+    75%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: scale(1) rotate(20deg);
+    }
+}
+
+/* 흔들리는 로고 애니 키프레임 */
+@keyframes logoac2 {
+    0%{
+        transform: rotate(20deg);
+    }
+    100%{
+        transform: rotate(-20deg);
+    }
+    
+}
+
+/* 2. 로봇머리 */
+.head {
+    /* 윗쪽 화면바깥에 위치 */
+    top: -500px;
+    /* top값에 %가 적용안되는 이유:
+    부모박스의 높이값이 auto 즉, 지정하지
+    않아서 적용안됨. 특정크기를 주면 적용됨! */
+    animation: headani 2s ease-in-out 3.5s forwards;
+}
+/* 로봇머리 등장 키프레임 */
+@keyframes headani {
+    to{
+        top: 0;
+    }
+}
+
+/* 3. 로봇몸 */
+.body {
+    left: -100%;
+    /* 가로크기는 끝까지 채우는 크기이므로
+    %단위가 바로 적용된다! */
+    animation: bodyani 2s ease-in-out 2s forwards;
+}
+
+/* 로봇몸 등장 키프레임 */
+@keyframes bodyani {
+    to{
+        left: 0;
+    }
+}
+
+/* 4. 설명링크 */
+.link {
+    /* 투명상태 */
+    opacity: 0;
+    animation: opaani .1s ease-in-out 5.5s 5 alternate forwards;
+}
+
+/* 5. 위로가기 버튼 */
+.btnTop {
+    /* 투명상태 */
+    opacity: 0;
+    animation: opaani .1s ease-in-out 5.5s 5 alternate forwards;
+}
+
+/* 6. TV */
+.tv{
+    /* 투명상태 */
+    opacity: 0;
+    animation: opaani .1s ease-in-out 4s 5 alternate forwards;
+}
+
+/* 설명 링크, 위로 이동 버튼, TV 등장 공통 키프레임 */
+@keyframes opaani {
+    100%{
+        opacity: 1;
+    }
+}
+
+/* 7. 오른팔 */
+.a2{
+    /* 회전축 변경(세로 상단) */
+    transform-origin: center 20px;
+    /* 애니메이션 */
+    animation:
+    a2ani1 1s ease-in-out 3s alternate forwards,
+    a2ani2 .4s ease-in-out 4s infinite alternate;
+}
+/* 오른팔 올리기 애니 */
+@keyframes a2ani1 {
+    to{
+        transform: rotate(-155deg);
+    }
+}
+@keyframes a2ani2 {
+    to{
+        transform: rotate(-130deg);
+    }
+}
+
+/* 8. 입 */
+.mouth{
+    animation: mouthani .05s linear 6s infinite alternate;
+}
+
+/* 입 애니 */
+@keyframes mouthani {
+    to{
+        transform: scaleY(.5);
+    }
+}

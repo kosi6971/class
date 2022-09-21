@@ -130,8 +130,27 @@
             여러가지 속성을 별도로 트랜지션을 주고자 할 경우
             in-out순으로 셋팅하고 콤마로 구분한다
         */
+
+        /* 아웃 시 트렌디션 -> 선서를 거꾸로 가도록 구성 */
         #tr4 span{
-            transition: left 5s ease-in-out,
+            transition: left 5s ease-in-out 5s,
+            /* left속성을 5초간 처음과 마지막에 천천히 5초 후 애니 */
+            background-color 2s ease-out 4s,
+            /* 배경색 속성을 2초간 마지막에 천천히 4초 후 애니 */
+            border-radius 3s linear 1s,
+            /* 둥근 모서리 속성을 3초간 등속도로 1초 후 애니 */
+            top 1s ease-in-out;
+            /* top속성을 1초간 처음과 마지막에 천천히 애니 */
+        }
+        /* #chk 체크 박스 체크 시 span 변경 */
+        /* :checked 가상 클래스를 사용하여 체크 시 형제요소(+) 변경 */
+        #chk:checked + span{
+            left: 70%;
+            background-color: darkviolet;
+            border-radius: 0;
+            top: -100px;
+
+            transition: left 5s ease-in-out 5s,
             /* left속성을 5초간 처음과 마지막에 천천히 애니 */
             background-color 2s ease-out 4s,
             /* 배경색 속성을 2초간 마지막에 천천히 4초 후 애니 */
@@ -139,13 +158,6 @@
             /* 둥근 모서리 속성을 3초간 등속도로 5초 후 애니 */
             top 1s ease-in-out 8s;
             /* top속성을 1초간 처음과 마지막에 천천히 8초 후 애니 */
-        }
-        /* 오버 시 span 변경 */
-        #tr4:hover span{
-            left: 70%;
-            background-color: darkviolet;
-            border-radius: 0;
-            top: -100px;
         }
 
 
@@ -172,6 +184,9 @@
 
     <h2>4.원본에 트랜지션을 각 속성별로 다르게 준다</h2>
     <div id="tr4">
+        <!-- label은 input요소의 설명요소 for속성은 input의 id와 연결됨(클릭 시연결) -->
+        <label for="chk">체크하면 작동!</label>
+        <input type="checkbox" id="chk">
         <span></span>
     </div>
 </body>
