@@ -76,7 +76,8 @@ body{
     /* left값은 "나는 왼 쪽 너는 오른 쪽" */
     float: left;
     
-
+    /* 부모 자격 부여 - (.cd에 대한) */
+    position: relative;
 }
 
 /* 캐릭터 이미지 - .cai 지계자식 img만 선택 */
@@ -128,7 +129,12 @@ body{
 }
 
 .cd{
-    height: 250px;
+    /* 위치에 있어 젠틀 */
+    position: absolute;
+    /* 가로 크기 설정을 안한 경우, auto이므로 앱솔루트일 때 부모를 찾음 */
+    /* .cat에 부모 자격 부여 */
+
+    height: 0; /* -> .cat에 마우스 오버 시 250px */
     /* 넘치는 내용 자동 스크롤 */
     /* 
         overflow 속성
@@ -138,6 +144,23 @@ body{
         - auto 스코롤바 생김(y 방향만)
     */
     overflow: auto;
-    margin-top: 15px;
+    border-radius: 10px 5px 5px 10px;
     background: url(../images/eachBG.jpg) no-repeat center/cover;
+
+    transition: height .4s ease-out;
+}
+
+/* 캐릭터 이미지 박스 */
+.ci{
+    padding-bottom: 15px;
+    transition: margin-top .4s ease-out;
+}
+
+/* 개릭터박스에 마우스 오버시 */
+.cat:hover .ci{
+    margin-top: -50%;
+}
+
+.cat:hover .cd{
+    height: 250px;
 }
