@@ -125,7 +125,7 @@ column-rule : 다중열 구분선 설정 - border색상과 유사
 column-gap : 다중열 사이 간격 설정
 word-break: break-all; : 단어 깨기 - 1byte문자인 영어는 깨주어야 공백이 생지기 않는다(2byte문자는 상관 없다
 
-트랜지션 - CSS속성값이 변경하는 과정을 애니메이션으로 보여주는 속성 - transition: 속성명 시간(s) ease-@ 대기시간(s);
+transition - CSS속성값이 변경하는 과정을 애니메이션으로 보여주는 속성 - transition: 속성명 시간(s) ease-@ 대기시간(s);
     -> 마우스 오버 시 혹은 미리 셋팅된 클래스에 설정하여 JS로 클래스를 요소에 부여해도 적용 가능
         1. 속성명 : 애니메이션 대상 속성을 지정하는 것으로 all 사용 시, 모든 속성에 애니메이션 설정이 가능(all은 생략 가능)
         2. 시간 : 애니메이션 동작 시간(뒤에 s)
@@ -142,7 +142,30 @@ word-break: break-all; : 단어 깨기 - 1byte문자인 영어는 깨주어야 �
 2022/09/21)
 
 CSS 변수 지정 - :root{--변수명: 값px/%;}
-트랜스폼 - 
+transform - 선택요소의 크기, 회전, 이동, 기울기 등을 변형하기 위한 속성(2D, 3D 지원)
+    1. rotateY(deg) - Y축 회전
+    2. rotateX(deg) - X축 회전
+    3. translateX(px/%) - X축 이동
+    4. translateY(px/%) - Y축 이동
+    5. translate(X축, Y축) - X,Y축 이동
+    6. rotate(deg) - 원형 회전
+    7. skewX() - x축 기울임
+    8. skewY() - y축 기울임
+    9. skew(X축, Y축) - x,y축 기울임
+    10. scale(x축배수,y축배수)
+
+filter - 흑백, 흐림, 세피아, 명암, 채도 등 출력 이미지를 변경하는 속성
+    1. filter: blur() : 흐림 효과
+    2. filter: brightness() : 밝기 효과
+    3. filter: contrast() : 대비 효과
+    4. filter: drop-shadow() : 그림자 효과
+    5. filter: grayscale() : 흑백 효과
+    6. filter: hue-rotate() : 색조 회전 효과
+    7. filter: invert() : 반전 효과
+    8. filter: opacity() : 불투명도 효과
+    9. filter: saturate() : 포화 효과
+    10. filter: sepia() : 세피아 효과
+
 애니메이션 - 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
