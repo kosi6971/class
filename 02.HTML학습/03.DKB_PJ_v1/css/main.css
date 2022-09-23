@@ -20,7 +20,7 @@
 
 /* 공사중 표시 */
 body * {
-    outline: 2px dashed gray;
+    outline: 1px double red;
 }
 
 /* 컨텐츠 파트 최상위부모 */
@@ -28,7 +28,7 @@ body{
     /* 한 번에 배경주기 + 여러 개 주기 */
     /* ,를 이용하여 여러 배경 이미지를 넣을 수 있고 먼저 쓴 이미지가 위로 온다 */
     background:
-    url(../images/bg_logo_a_01.png) no-repeat fixed 0 0/10%,
+    url(../images/bg_logo_a_01.png) no-repeat fixed 10% 25%/10%,
     url(../images/bg_mainvisual.jpg) no-repeat fixed center/cover ;
     /* 
         background-attachment: fixed;
@@ -54,8 +54,24 @@ body{
 .cbx{
     width: 90%;
     margin: 0 auto;
-    margin-top: 500px;
-    margin-bottom: 100px;
+
+    margin-top: -250px;
+
+    animation:
+    run1 2s ease-out 1s forwards,
+    run2 0.4s ease-in-out 3s forwards;
+}
+
+@keyframes run1 {
+    to{
+        margin-top: 520px;
+    }
+}
+
+@keyframes run2 {
+    to{
+        margin-top: 500px;
+    }
 }
 
 /* 자식 요소의 float으로 해제 설정 가상요소 after */
@@ -156,7 +172,7 @@ body{
     transition: margin-top .4s ease-out;
 }
 
-/* 개릭터박스에 마우스 오버시 */
+/* 캐릭터박스에 마우스 오버시 */
 .cat:hover .ci{
     margin-top: -50%;
 }

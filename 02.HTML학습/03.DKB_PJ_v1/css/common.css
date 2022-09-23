@@ -4,12 +4,193 @@
 
 /* 1. 상단 영역 */
 .top{
-    height: 200px;
+    position: relative;
+    height: 128px;
+}
+
+#top{
+    background-color: white;
+    margin-top: -210px;
+    animation: down1 2s ease-in-out 1s forwards;
+}
+
+@keyframes down1 {
+    to{
+        margin-top: 0px;
+    }
+}
+
+.logo{
+    width: 100px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.logo img{
+    width: 100px;
+}
+
+.gnb{
+    width: 574px;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+.gnb>ul>li{
+    padding: 0 15px;
+}
+
+.gnb>ul>li>a{
+    position: relative;
+    display: block;
+    font-size: 17px;
+    line-height: 2.5;
+}
+
+/* 가상요소로 하단 바 만들기 */
+.gnb>ul>li>a::after{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background-color: red;
+    transition: width 0.2s;
+}
+
+.gnb>ul>li>a:hover::after{
+    width: 100%;
+}
+
+.tmenu{
+    position: absolute;
+    top: 20px;
+    right: 0;
+}
+
+.tmenu>ul>li{
+    padding: 0 5px;
+}
+
+.tmenu>ul>li>a{
+    font-size: 15px;
 }
 
 
+.sns{
+    margin-top: -5px;
+}
+
+.sns li{
+    width: 30px;
+    height: 30px;
+    /* 배경이미지로 sns아이콘 넣기(스프라이츠) */
+    background: url(../images/icons.png) no-repeat;
+}
+
+.sns li:nth-child(1){
+    background-position: 0 0;
+}
+
+.sns li:nth-child(1):hover{
+    background-position: 0 -30px;
+}
+
+.sns li:nth-child(2){
+    background-position: -30px 0;
+}
+
+.sns li:nth-child(2):hover{
+    background-position: -30px -30px;
+}
+
+.sns li:nth-child(3){
+    background-position: -60px 0;
+}
+
+.sns li:nth-child(3):hover{
+    background-position: -60px -30px;
+}
+
+/* sns a요소 확장 */
+.sns a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
 
 /* 3. 하단 영역 */
 .info{
     height: 271px;
+    position: relative;
+    margin-top: 90px;
+}
+
+#info{
+    background-color: rgba(255, 255, 255, 0.514);
+}
+
+.blink{
+    padding-top: 5px;
+}
+
+.blink ul{
+    /* 가로 크기를 줘야 마영오가 적용 */
+    width: 804px;
+    /* 마영오만 쓰면 블록 특성상 가로의 길이를 몰라 변동이 없음 */
+    margin: 0 auto;
+}
+
+.blink li{
+    padding: 0 15px;
+}
+
+.blink a{
+    color: 222;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 2.8;
+}
+
+.blink a:hover{
+    color: red;
+    text-decoration: underline;
+}
+
+.addr{
+    padding: 10px;
+}
+
+.addr address{
+    /* 글자 셋팅 - address요소 기본 이탤릭 해제 */
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 2;
+
+    /* 박스 셋팅 */
+    width: 804px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 4px double #222;
+}
+
+.blogo{
+    /* 글자 중앙 */
+    text-align: center;
+}
+
+#sel{
+    position: absolute;
+    top: 10px;
+    right: 0px;
+}
+
+#sel{
+    color: #222;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 2.8;
+    padding: 3px;
 }
