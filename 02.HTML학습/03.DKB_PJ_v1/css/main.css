@@ -130,7 +130,7 @@ body{
 
 .cd h3{
     font-family: 'Ma Shan Zheng', 'Noto Serif KR';
-    font-size: 17px;
+    font-size: min(1.7vw, 22px);
     font-weight: normal;
     padding: 15px 10px 5px;
 }
@@ -139,7 +139,7 @@ body{
     font-family: 'Ma Shan Zheng', 'Nanum Brush Script';
     font-size: 18px;
     line-height: 1.2;
-    padding: 10px;
+    padding: min(1.5rem, 10px);
     /* 양쪽 정렬 */
     text-align: justify;
 }
