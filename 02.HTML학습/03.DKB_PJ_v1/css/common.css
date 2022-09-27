@@ -4,11 +4,13 @@
 
 /* 1. 상단 영역 */
 .top{
-    position: relative;
+    /* .tmenu의 부모 요소 -> .gnb 서브 배경 때문에 지움 */
+    /* position: relative; */
     height: 128px;
 }
 
 #top{
+    border-bottom: 1px solid rgb(105, 105, 105);
     background-color: white;
     margin-top: -210px;
     animation: down1 2s ease-in-out 1s forwards;
@@ -59,14 +61,78 @@
     transition: width 0.2s;
 }
 
-.gnb>ul>li>a:hover::after{
+/* 상위 li 머유스 오버 시 하단바 보이기 */
+.gnb>ul>li:hover>a::after{
     width: 100%;
+}
+
+.smenu{
+    position: absolute;
+    height: 0;
+    overflow: hidden;
+    transition: height .4s ease-out;
+    z-index: 1;
+}
+
+.gnb>ul>li:nth-child(1):hover .smenu, .gnb>ul>li:nth-child(1):hover::after{
+    height: 120px;
+}
+
+.gnb>ul>li:nth-child(3):hover .smenu, .gnb>ul>li:nth-child(3):hover::after{
+    height: 150px;
+}
+.gnb>ul>li:nth-child(4):hover .smenu, .gnb>ul>li:nth-child(4):hover::after{
+    height: 90px;
+}
+
+.smenu ol{
+    padding-top: 5px;
+}
+
+.smenu a{
+    display: block;
+    font-size: 1.4rem;
+    padding: 10px 0;
+}
+
+/* 상위 li 가상요소로 서브 배경박스 넣기 - 서브메뉴 끝까지 차는 박스-> .sm인 li만 생성 */
+.gnb>ul>li.sm::after{
+    margin-top: 1px;
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    /* 부모는? 보이는 화면 */
+    width: 100%;
+    /* 가로 크기에 %이므로 부모자격여소를 찾아 크기를 잡는다 */
+    height: 0;
+    background-color: #fff;
+    transition: height .4s ease-out;
+}
+
+.gnb>ul>li.sm:hover::after{
+    border-bottom: 2px solid red;
 }
 
 .tmenu{
     position: absolute;
-    top: 20px;
-    right: 0;
+    top: -190px;
+    left: 50%;
+    /* x축으로 중앙 이동 */
+    /* 부모는 보이는 화면 */
+    transform: translateX(-50%);
+    width: 1200px;
+    animation: down2 2s ease-in-out 1s forwards;
+}
+
+@keyframes down2 {
+    to{
+        top: 20px;
+    }
+}
+
+.tmenu>ul{
+    float: right;
 }
 
 .tmenu>ul>li{
@@ -120,6 +186,40 @@
     height: 100%;
 }
 
+/* 모바일용 햄버거버튼 */
+.ham{
+    position: absolute; 
+    top: -190px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    background-color: transparent;
+    border: 0;
+    display: none;
+    animation: down3 2s ease-in-out 1s forwards;
+ }
+
+
+ @keyframes down3 {
+    to{
+        top: 20px;
+    }
+}
+
+ /* 버튼가상요소로 기호넣기 */
+ .ham::before{
+     content: '≡';
+     display: block;
+     transform: scaleX(1.5);
+     /* 트랜스폼은 인라인에 안먹힘! */
+ }
+ /* 가상요소 기호변경 */
+ .ham.on::before{
+     content: '×';
+     transform: none;
+ }
+
 /* 3. 하단 영역 */
 .info{
     height: 271px;
@@ -137,7 +237,7 @@
 
 .blink ul{
     /* 가로 크기를 줘야 마영오가 적용 */
-    width: 804px;
+    max-width: 804px;
     /* 마영오만 쓰면 블록 특성상 가로의 길이를 몰라 변동이 없음 */
     margin: 0 auto;
 }
@@ -170,7 +270,7 @@
     line-height: 2;
 
     /* 박스 셋팅 */
-    width: 804px;
+    max-width: 804px;
     margin: 0 auto;
     padding: 10px;
     border: 4px double #222;
