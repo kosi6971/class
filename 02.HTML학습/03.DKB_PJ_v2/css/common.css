@@ -230,7 +230,7 @@
 .info{
     height: 271px;
     position: relative;
-    margin-top: 90px;
+    /* margin-top: 90px; */
 }
 
 #info{

@@ -1,0 +1,70 @@
+@charset "utf-8";
+/* 도깨비 PJ 공통클래스/웹폰트 CSS - core.css */
+
+/* 웹폰트 CDN */
+@import url('https://fonts.googleapis.com/css2?family=Single+Day&family=Yeon+Sung&family=ZCOOL+QingKe+HuangYou&family=Nanum+Gothic&display=swap');
+/* 
+    font-family: 'Single Day', cursive;
+    font-family: 'Yeon Sung', cursive;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    font-family: 'Nanum Gothic', sans-serif;
+*/
+
+/* 전체 글자 크기 root 셋팅 */
+html{
+    /* 글자 rem단위 계산 편의 */
+    font-size: 10px;
+}
+
+body{
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* 속박스 class */
+.ibx{
+    /* 최대 가로 크기 1200px이면 싸고 있는 박스가 이것보다 작이질 경우,
+    auto로 자동 전환되어 가로 스크롤이 안 생긴다. */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 스크롤바 디자인 클래스 */
+/* -webkit- 벤터사명(크롬, 사파리) 접두어
+(참고 : -ms-(ie), -o-(오페라), -moz-(파이어폭스) */
+.scbar::-webkit-scrollbar{
+    /* 전체 스크롤바 크기 변경 */
+    width: 7px;
+}
+
+.scbar::-webkit-scrollbar-thumb{
+    /* 스크롤바 */
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.scbar::-webkit-scrollbar-track{
+    /* 스크롤바 트랙 */
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+/* float 셋팅 */
+.clb>li{
+    float: left;
+}
+
+/* float설정 지우기 클래스 */
+.clb::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/* IR클래스 */
+/* 배경 이미지 설명 클래스 */
+.ir{
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}

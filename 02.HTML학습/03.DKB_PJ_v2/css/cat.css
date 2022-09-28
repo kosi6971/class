@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* 도깨비 PJ 인물관계도 페이지 CSS - cat.css */
+/* 인물관계도 페이지에만 적용되는 CSS */
+
+/*  외부 CSS합치기 */
+@import url(reset.css);
+@import url(core.css);
+@import url(common.css);
+
+body *{
+    outline: 1px solid red;
+}
+
+.cont{
+    /* 최소 높이 설정 : 내용이 넘칠 경우 자동 auto */
+    min-height: 600px;
+    text-align: center;
+}
+
+#catimg{
+    max-width: 100%;
+    /* 
+        이미지에 최대가로 크기 100%란, 싸고 있는 박스가 이미지보다 작아지면
+        자동으로 가로 크기를 100%
+
+     */
+}
+
+#cont{
+    background-color: rgb(230, 230, 230);
+}
