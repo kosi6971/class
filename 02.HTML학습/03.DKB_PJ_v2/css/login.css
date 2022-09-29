@@ -101,11 +101,32 @@ body *{
     margin-top: 50px;
     text-align: center;
     font-size: 1.6rem;
+    user-select: none;
 }
 
 .addbx input{
     vertical-align: -2px;
+    width: 0;
+    overflow: hidden;
 }
+
+/* 체크 박스 아이콘을 라벨에 넣기 */
+.addbx input+label{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: -3px;
+    font-size: 20px;
+    margin-right: 5px;
+    color: orangered;
+}
+
+/* 체크박스 체크 시 아이콘 변경 */
+.addbx input:checked+label{
+    font-weight: 900;
+    
+}
+
 
 .addbx span+span::before{
     content: '|';
