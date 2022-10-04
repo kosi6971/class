@@ -42,6 +42,70 @@
         }
     </style>
     <script>
+        // html의 body보다 위에 있는 스크립트 구역은
+        // 당연히 먼저 실행된다. 따라서 html요소 호출 시
+        // null값으로 아무것도 불러올 수 없다
+        // html캐그를 모두 로딩 후 실행해야한다
+        // window객체에 local이벤트 후에 본 코드를 실행하도록 한다
+
+        /* [ js 이벤트 등록 내장 함수 : addEventListener(이벤트명, 함수) ]
+        로드 이벤트의 종류 :
+        1. local - 모든 컨텐츠가 로딩 후 발생(이미지, 동영상 등 모두 불러온 후 발생)
+        2. DOMCintentLoaded - html태그가 모두 그려지면 발생(태그만 그리면 바로 실행하므로 local보다 빠르다)
+
+        html이 모두 로딩 후 setFn함수 호출하기
+        대상 : window객체 -> window
+        사용 js 내장 함수 : addEventListener(이벤트명, 함수)
+        사용할 이벤트 : DOMContentLoaded
+        */
+        window.addEventListener("DOMContentLoaded", setFn);
+        // 만약 전달값이 없다면 함수 호출시 소괄호 없이 사용
+        // 전달값이 있다면 익명함수 안에서 전달값과 같이 호출
+        /* 
+            ex)
+            window.addEventListener("DOMContentLoaded", function(){
+                setFn(전달값);
+            });
+
+            -> 또는 익명 함수 안에 직접 구현코드를 넣을 수 있다
+            -> 익명 함수의 특성상 코드를 버로 실행하지 않고 보관
+            -> 이벤트가 발생하면 함수 안의 코드를 실행한다
+        */
+
+
+        /*
+            함수명 : setFn
+            기능 : 버튼에 이벤트 설정하기
+        */ 
+       function setFn(){
+        console.log("이벤트 설정")
+        
+        // 대상 선정 : 버튼들 - .btns
+        let btns = document.querySelectorAll(".btns");
+        console.log("버튼", btns);
+
+        // 버튼 개수 변수 할당
+        let cnt = btns.length;
+        console.log(cnt);
+
+        // 대상만큼 모두 돌아서 click이벤트 셋팅
+        // 사용할 이벤트 속성 : onclick 
+        // 셋팅 내용 : 이미지 src변경 기능함수 호출 ->  chgImg함수
+        for(let i = 0; i < cnt; i++){
+            // 방법 1 : onclick 속성에 익명 함수 할당 방식
+            btns[i].onclick = function(){
+                chgImg(this);
+            }
+
+            // 방법 2 : 이벤트 등록 내장 함수 사용 방식
+            // btns[i].addEventListener("click", function(){
+            //     chgImg(this);
+            // });
+        }
+
+       }
+       
+
         /*********************************************** 
             [JS 기능정의]
             버튼을 클릭하면 버튼별로 해당 이미지를
@@ -56,7 +120,32 @@
             함수명: chgImg
             기능: 이미지 src변경하기
         **************************************/
-        
+       function chgImg(ele){
+        let btxt = ele.innerText;
+
+        let isrc;
+
+        if (btxt === "포스터") {
+                isrc = "./images/ala1.jpg";
+            } 
+            else if (btxt === "장면1") {
+                isrc = "./images/ala4.jpg";
+            } 
+            else if (btxt === "장면2") {
+                isrc = "./images/ala3.jpg";
+            } 
+            else if (btxt === "장면3") {
+                isrc = "./images/ala2.jpg";
+            } 
+
+            console.log("이미지경로:",isrc);
+
+        // 대상 이미지에 src값 변경
+        // 대상이미지 : #screne
+        // 속성변경 js 내장 함수 : setAttribute(속성값, 값)
+        document.querySelector("#scene").setAttribute("src", isrc);
+       }
+
     </script>
 </head>
 
