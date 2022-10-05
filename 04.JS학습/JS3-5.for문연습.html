@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for문 연습1 - 파란상자에 미니언즈 집어넣기</title>
+    <style>
+        /* 미니언즈 이미지 */
+        .mini {
+            cursor: pointer;
+            /* 손가락모양 */
+            border: 5px dotted #fff;
+        }
+
+        /* 마우스오버시 보더색 변경 */
+        .mini:hover {
+            border-color: red;
+        }
+
+        /* 파란색 가방 */
+        .Bcase {
+            border: 20px ridge blue;
+            min-height: 250px;
+            /* 최소높이를 주면 설정높이를 유지하다가
+            내용이 많아지면 높이값이 늘어남! */
+        }
+
+        .Bcase img {
+            width: 150px;
+            /* 크기줄임 */
+        }
+    </style>
+    <script>
+        window.addEventListener("DOMContentLoaded", ()=>{
+            console.log("로딩 완료");
+
+            const bcase = document.querySelector(".Bcase");
+            console.log(bcase);
+
+            // 클릭 이벤트 대상 : .mini
+            const mini = document.querySelectorAll(".mini");
+            console.log(mini);
+
+            // 이벤트 셋팅
+            // mini[0].onclick = function(){insMini(1)};
+            mini[0].onclick = ()=>insMini(1);
+            mini[1].onclick = ()=>insMini(5);
+            mini[2].onclick = ()=>insMini(10);
+
+            /*////////////////////////////////////////
+            함수명: insMini
+            기능: 미니언즈 이미지를 파란박스에 넣기
+            */ ////////////////////////////////////////
+            function insMini(num){ // num - 반복 수
+                console.log("반복 수", num);
+
+                for(let i=0;i<num;i++){
+                    bcase.innerHTML += `<img src="./images/Minions.png" alt="미니언즈">`;
+                }
+            }
+
+            ////////// insMini 함수 /////////////////
+            ///////////////////////////////////////////
+
+            const btns = document.querySelector("button");
+            console.log(btns);
+
+            btns.onclick = ()=> bcase.innerHTML = "";
+            // 함수도 명령문이 하나면 {} 생략 가능
+        }); // function(){}
+        
+    </script>
+</head>
+
+<body>
+    <h1>for문 연습1 - 파란상자에 미니언즈 집어넣기</h1>
+    <img src="./images/Minions.png" alt="미니언즈" class="mini" title="나를 클릭하면 한개씩 가방에 들어갈꼬얌~!">
+    <img src="./images/Minions.png" alt="미니언즈" class="mini" title="나를 클릭하면 다섯개씩 가방에 들어갈꼬얌~!">
+    <img src="./images/Minions.png" alt="미니언즈" class="mini" title="나를 클릭하면 열개씩 가방에 들어갈꼬얌~!">
+
+    <!-- 리셋을 한다면 이렇게...! -->
+    <button>리셋</button>
+    
+    <!-- 파란상자 -->
+    <div class="Bcase"></div>
+
+</body>
+
+</html>
