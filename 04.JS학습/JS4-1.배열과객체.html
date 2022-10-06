@@ -281,33 +281,130 @@
             ***************************************/
 
             // 객체 생성하기
-            
+            const GU ={
+                name : "공유",
+                tall : "184cm",
+                weight : "74kg",
+                com : "매니지먼트숲",
+                work : "도깨비, 부산행",
+                msg : (txt)=>{
+                    alert("팬레터 : "+txt);
+                    tg[4].style.background = "url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Gong_Yoo_%28Sep_2016%29.png/250px-Gong_Yoo_%28Sep_2016%29.png) repeat-x top/auto 100%";
+                    tg[4].style.color = "#fff";
+                    tg[4].style.textShadow = "0 0 5px #000";
+                    tg[4].style.lineHeight = "30px";
+                    tg[4].style.height = "100px";
+                    tg[4].style.paddingTop = "100px";
+                    tg[4].style.transition = "2s ease-in-out .5s";
+                }
+            };
+
+            // GU객체 찍어보기 -> 변경 내요이 전체 객체 찍기에 반영되기에 나중에 또 찍을 필요 X
+            console.log(GU);
+
+            // GU객체 속성 중 work 값 업데이트
+            GU.work = "도깨비, 부산행, 오징어게임";
+
+            // 객체 속성 추가하기
+            // 방법 : Object객체의 속성 정의 메서드 사용
+            // -> Object.defineProperty(객체명, 속성명, {value:속성값});
+            Object.defineProperty(GU, "fool", {value:"280cm"});
+            // GU객체에 발사이즈인 foot속성과 값을 추가
+
+            // 객체 속성 제거하기
+            // delete 객체명.속성명 -> 선택 속성 제거
+            // 이미 있는 속성을 제거가 가능하며 추가한 것은 불가능하다
+            delete GU.work;
 
             // GU객체 출력하기 ////////
             // 출력대상: tg[4]
-
-            // 줄간격 조정
             
 
+            // 줄간격 조정
+            tg[4].style.lineHeight="24px";
+
             // 내용출력
-           
+           tg[4].innerHTML=`
+                저는 ${GU.name}입니다.
+                몸무게는 비밀인데요 그래도 말씀드리자면
+                ${GU.weight}입니다.<br>
+                제 대표작은 ${GU.work}입니다.<br>
+                제 소속사는 모르시는 분들이 많은데
+                ${GU.com}입니다. 안녕히계세요.
+           `;
 
             // 툴팁 띄우기
             // setAttribute(속성명,값)
-            
+            tg[4].setAttribute("title", GU.name+"팬레터를 확인하세요");
 
             // 손가락모양
-            
+            tg[4].style.cursor = "pointer";
 
             // 공유박스 클릭시 GU객체 메서드 호출하기
-            
+            tg[4].onclick = ()=>GU.msg("공유\nkosi");
 
             // 미션: tg[5]에 자신이 만든 객체의 정보를 출력하시오
             // 주제는 영화정보
             // 변수명도 자신이 지어본다!
             // 객체의 속성명도 변수형으로 자신이 지어본다!
 
+            const mov = document.querySelector("#mvbx");
+            console.log(mov);
+
+            const kosi = {
+                name : "지상근",
+                age : 19,
+                tall : "173cm",
+                weight : "63kg",
+                spc : "정보통신",
+                msg : ()=>{
+                    alert("끼룩, 공부! 취업! 그것이 나의 삶! 노래 한 곡 듣고 가시죠");
+                    mov.innerHTML = `
+                        <div id="mv">
+                            <iframe width="640" height="360" src="https://www.youtube.com/embed/xXFCIHGiCRM"></iframe>
+
+                            <button class="cbtn">X</button>
+                        </div>
+                    `;
+                    const mv = document.querySelector("#mv");
+                    const cbtn = document.querySelector(".cbtn");
+                    let mvs = mv.style;
+                    let cbs = cbtn.style;
+
+                    mvs.position = "fixed";
+                    mvs.top = "30%";
+                    mvs.left = "50%";
+                    mvs.transform = "translate(-50%,-50%)";
+                    mvs.backgroundColor = "#000";
+
+                    cbs.position = "absolute";
+                    cbs.top = "0";
+                    cbs.right = "-70px";
+                    cbs.width = "40px";
+                    cbs.height = "40px";
+                    cbs.color = "black";
+                    cbs.backgroundColor = "gray";
+                    cbs.fontWeight = "bold";
+                    cbs.borderRadius = "50%";
+                    cbs.cursor = "pointer";
+
+                    cbtn.onclick = ()=>mv.remove();
+
+                    tg[5].style.background = "url(https://1.bp.blogspot.com/-xgKsoazZxNY/Xj62ouxWE5I/AAAAAAAASMs/bJx1zKxGeLA90Zp9JyHJnFs1ytuUivEQwCLcBGAsYHQ/w1200-h630-p-k-no-nu/534gdfg.jpg) no-repeat cnter/cover";
+                }
+            };
             
+
+            tg[5].innerHTML=`
+                안녕하십니까, ${kosi.name}입니다.<br>
+                간단한 자기소개를 시작하겠습니다.<br>
+                나이 ${kosi.age}, 키 ${kosi.tall}, 몸무게 ${kosi.weight}, 전공 ${kosi.spc}입니다.
+           `;
+
+           tg[5].style.lineHeight = "25.5px";
+           tg[5].setAttribute("title", "인생을 클릭");
+           tg[5].style.cursor = "pointer";
+           tg[5].onclick = ()=>kosi.msg();
 
         }; ////////////// loadFn 함수 //////////////////
         ////////////////////////////////////////////////
@@ -351,7 +448,7 @@
 
 <body>
     <h1>JS4-1. 배열변수와 객체</h1>
-
+    
     <div class="cont"></div>
     <div class="cont"></div>
     <div class="cont"></div>
