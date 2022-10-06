@@ -22,6 +22,7 @@ a{
     position: relative;
     height: 80px;
     background: url(../images/curtain.jpg) repeat-x;
+    z-index: 9999;
 }
 
 .tit{
@@ -49,10 +50,11 @@ a{
 
 .gnb ul{
     display: flex;
-}
-
-.gnb ul li{
     font-family: 'Nanum Gothic';
+}
+/* 상위 li만 적용 */
+.gnb ul>li{
+    position: relative;
     font-size: 2rem;
     margin: 0 10px;
 }
@@ -63,6 +65,68 @@ a{
     position: relative;
     height: 788px;
     background: url(../images/bg.jpg) no-repeat center;
+}
+
+.smenu{
+    position: absolute;
+    width: 140px;
+    padding: 3px;
+    background: url(../images/bg_smenu.png) no-repeat center/cover;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #fff;
+    left: 50%;
+    /* 트랜스폼 x축으로 중앙이동 y축으로는 5px 이동*/
+    transform: translate(-50%, 5px);
+
+    display: none;
+}
+
+.gnb ul>li:hover .smenu{
+    display: block;
+}
+
+.smenu::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid #353535;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+
+.smenu ol{
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.smenu li{
+    font-size: 1.4rem;
+    line-height: 2;
+}
+
+.smenu a{
+    /* li요소 패딩 안쪽까지 확장 */
+    display: block;
+}
+
+.smenu a:hover{
+    color: red;
+    font-weight: bold
+}
+
+.smenu a:hover::after{
+    content: '😂';
+    float: right;
+}
+
+.bdt{
+    border-top: 1px solid #ccc;
 }
 
 #screen{

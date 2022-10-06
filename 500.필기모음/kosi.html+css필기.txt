@@ -413,7 +413,8 @@ js for문 연습
 
 ************JS************
 배열과 객체 마지막 객체 부분
-
+js3-6 for_of 참고
+js3-6.2 for_each
 
 setAttribute : 
 .style.cursor = "pointer"; : 마으스 포인터 손가락 모양 표시
