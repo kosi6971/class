@@ -44,7 +44,7 @@ a{
 
 .gnb{
     position: absolute;
-    bottom: 20px;
+    bottom: 10px;
     right: 13px;
 }
 
@@ -57,6 +57,7 @@ a{
     position: relative;
     font-size: 2rem;
     margin: 0 10px;
+    padding-bottom: 5px;
 }
 
 /* 2. 메인영역 */
@@ -120,8 +121,23 @@ a{
     font-weight: bold
 }
 
-.smenu a:hover::after{
+.gnb >ul>li:nth-child(1) .smenu a:hover::after{
     content: '😂';
+    float: right;
+}
+
+.gnb >ul>li:nth-child(2) .smenu a:hover::after{
+    content: '😚';
+    float: right;
+}
+
+.gnb >ul>li:nth-child(3) .smenu a:hover::after{
+    content: '😎';
+    float: right;
+}
+
+.gnb >ul>li:nth-child(4) .smenu a:hover::after{
+    content: '🤑';
     float: right;
 }
 
@@ -157,6 +173,17 @@ a{
     position: relative;
     /* 처음은 설명을 안보이게 하기 - 나중에 보이게 할 것 */
     overflow: hidden;
+    transform: rotateX(40deg);
+    transform-origin: bottom;
+    transition: .4s ease-out;
+}
+
+/* 클래스 on 적용 시 같은 변경 적용 */
+.mlist ul>li.on, .mlist ul>li:hover{
+    transform: rotateX(0deg);
+    outline: 1px solid gray;
+    /* 오버 시 맨 위로 오기하기 */
+    z-index: 1;
 }
 
 .mlist>ul>li+li{
@@ -166,6 +193,8 @@ a{
 .mlist ul{
     display: flex;
     justify-content: center;
+    perspective: 480px;
+    perspective-origin: 50% 50%;
 }
 
 .mlist img{

@@ -44,7 +44,7 @@
     </style>
     <script>
         /// 영화정보 객체 ////
-        let mvi = {
+        const mvi = {
             "조제": {
                 "포스터": "https://movie-phinf.pstatic.net/20201116_276/1605491658399poUOC_JPEG/movie_image.jpg?type=m99_141_2",
                 "제목": "조제",
@@ -87,7 +87,53 @@
                     대상의 각 내용에 맞게 객체로부터 정보를 셋팅함!
             ********************************************************/
 
-            
+            // 이벤트 대상 : .btns button
+            const btns = document.querySelectorAll(".btns button");
+            console.log(btns);
+
+            // 대상 변수 click 이벤트 설정
+            // for of 사용
+            for(let x of btns){ // x - 버튼 요소 자신
+                // 클릭 이벤트
+                x.onclick = ()=>{
+                    // 클릭된 버튼의 글자
+                    let btxt = x.innerText;
+                    console.log("btxt", btxt);
+
+                    //  버튼 텍스트와 같은 객체 속성명의 값 가져오기(영화 정보 객체)
+                    let data = mvi[btxt];
+                    console.log("data : ", data);
+
+                    // 해당 요소에 데이터 넣기
+                    // for in 사용
+                    for(let y in data){
+                        // y는 속성명
+                        console.log("y : ", y);
+                        // 객체값음 객체명[속성명]
+                        console.log("data[y] : ", data[y]);
+
+                        switch(y){
+                            case "포스터":
+                                document.querySelector(".photo").innerHTML = `<img src="${data[y]}" alt="${btxt}">`;
+                                break;
+                            case "제목":
+                                document.querySelector(".tit").innerText = `${data[y]}`;
+                                break;
+                            case "개요":
+                                document.querySelector(".sum").innerText = `${data[y]}`;
+                                break;
+                            case "감독":
+                                document.querySelector(".dir").innerText = `${data[y]}`;
+                                break;
+                            case "출연":
+                                document.querySelector(".act").innerText = `${data[y]}`;
+                                break;
+                        }
+
+                        
+                    }
+                };
+            }
 
             /************************************************* 
                 [ 객체를 위한 for in 문 ]
