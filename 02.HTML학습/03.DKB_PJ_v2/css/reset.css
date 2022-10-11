@@ -31,3 +31,10 @@ img{
      블록박스의 높이가 결정되는 경우에 한다. */
     vertical-align: top;
 }
+
+/* 포커스 아웃라인 제거
+모든 브라우저에 기본 포커스 아웃라인 셋팅됨 */
+input:focus,
+select:focus{
+    outline: none;
+}

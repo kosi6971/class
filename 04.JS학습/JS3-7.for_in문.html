@@ -130,6 +130,29 @@
                                 break;
                         }
 
+                        // 영화 한마디 넣기
+                        // for of문으로 문자 데이터 잘라 넣기
+                        // 한 글자 씩 span태그로 싸서 해당 요소에 넣는다
+                        if(y==="문구"){
+                            let txt = data[y];
+                            console.log("txt:",txt);
+                            let newtxt = "";
+
+                            for(let m of txt){
+                                console.log("m:",m);
+                                if(m===" "){
+                                    newtxt += "&nbsp;&nbsp;&nbsp;";
+                                }
+                                else{
+                                    newtxt +=`<span>${m}</span>`
+                                }
+                            }
+                            // 문구 데이터 대상 출력
+                            document.querySelector(".show").innerHTML = newtxt;
+
+                            // "영화 한마디 " 타이틀 보이기
+                            document.querySelector(".showtit").style.display = "block";
+                        }
                         
                     }
                 };

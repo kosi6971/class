@@ -1,0 +1,135 @@
+@charset "utf-8";
+/* 도깨비 PJ 회원가입 페이지 CSS - member.css */
+/* 로그인 페이지에만 적용되는 CSS */
+
+/*  외부 CSS합치기 */
+@import url(reset.css);
+@import url(core.css);
+@import url(common.css);
+
+body *{
+    outline: 1px solid red;
+}
+
+.msg{
+    position: absolute;
+    top: 35px;
+    left: 0;
+    /* 부모 .scont li */
+    width: 100px;
+    height: 15px;
+    line-height: 15px;
+    /* 줄바꿈 방지 */
+    white-space: nowrap;
+
+    font-size: 10px;
+    color: red;
+}
+
+.msg.on{
+    color: green;
+}
+
+#cont{
+    background-color: rgb(230, 230, 230);
+}
+
+.cont{
+    /* 최소 높이 설정 : 내용이 넘칠 경우 자동 auto */
+    min-height: 600px;
+    padding: 15px;
+}
+
+.stit{
+    font-size: 5rem;
+    text-align: center;
+    padding: 40px 0 20px;
+    font-weight: normal;
+}
+
+.scont{
+    position: relative;
+    max-width: 700px;
+    min-height: 275px;
+    margin: 0 auto;
+    
+    background-color: #fff;
+    border-radius: 10px;
+    border: 2px solid rgb(175, 175, 175);
+    padding: 60px 15px;
+    /* 박스 크기 유지 : 보더, 패딩 포함 bxb */
+    box-sizing: border-box;
+}
+
+.scont ul{
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.scont li{
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+}
+
+.itit{
+    /* 디자인 적용을 위한 인라인블록 */
+    display: inline-block;
+    width: 200px;
+}
+
+/* []는 속성(attribute) 선택자 */
+.scont input[type=text],
+.scont input[type=password]{
+    width: 340px;
+    height: 36px;
+    font-size: 2rem;
+    border: 1px solid #777;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+.scont input[type=radio]{
+    width: 20px;
+    height: 20px;
+    /* 인라인 요소 세로 정렬 */
+    vertical-align: -4px;
+}
+
+#email1{
+    width: 170px;
+}
+
+#seleml{
+    width: 146px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 2rem;
+}
+
+#email2{
+    width: 136px;
+    float: right;
+    margin-top: 5px;
+    margin-right: 25px;
+    display: none;
+}
+
+#btnj{
+    width: 113px;
+    height: 40px;
+    border: 1px solid #777;
+    border-radius: 5px;
+    background-image: linear-gradient(to bottom, #ddd, #555);
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    font-weight: bold;
+    font-size: 1.6rem;
+    float: right;
+    margin-top: 5px;
+    margin-right: 25px;
+    cursor: pointer;
+}

@@ -143,17 +143,18 @@
 
             // 대상선정
             // (1) 이벤트 대상: .sel
-            
+            const sel = document.querySelector(".sel");
 
             // (2) 변경 대상: GNB메뉴 -> #gnb a
-            
+            const menu = document.querySelectorAll("#gnb a");
 
             // (3) 변경 대상: 메인 이미지 -> #cont img
-            
+            const mimg = document.querySelector("#cont img");
 
             // (4) 변경 대상: 하단 회사정보 -> #info address
-           
+            const info = document.querySelector("#info address");
 
+            console.log(sel, menu, mimg, info);
 
             ////////////////////////////////////////////////
             // 1. 선택박스 선택변경시 change이벤트에 따라 변경
@@ -162,7 +163,30 @@
             // 변경대상: 메뉴, 메인이미지, 하단정보
             /////////////////////////////////////////////////
             
+            sel.onchange = function(){
+                // 호출 확인
+                console.log("클릭", this);
+                // this키워드 : 이벤트 걸린 요소 자신(.sel)
+                // ()=>{}를 썼다면 this는 window객체이다
+                // 자기 자신은 event.currentTatget으로 구한다
+                let opt = this.value;
+                // let opt = event.currentTarget.value; // ()=>{} 함수일 경우 사용 
 
+                let data = lang[opt];
+                console.log("data:",data);
+
+                // 메뉴 변경 - 대상 : menu변수
+                // forEach((요소/배열값, 순번, 객체)=>{})
+                menu.forEach((ele, idx)=>ele.innerText = data["메뉴"][idx]);
+
+                // 이미지 변경 - 대상 : mimg 변수
+                // setAttribute(속성명, 값) -> 속성변경 js 함수
+                mimg.setAttribute("src", `images/${opt}.jpg`);
+
+                // 하단 주소 변경 - 대상 : info 변수
+                // innerText로 글자 변경
+                info.innerText = data["주소"];
+            }
 
 
         }); ////////// 로드구역 ////////////////////////
