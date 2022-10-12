@@ -1,0 +1,78 @@
+@charset "utf-8";
+/* 레이아웃3 CSS - layout3.css */
+
+/* 초기화 */
+html,body{
+    margin: 0;
+    padding: 0;
+}
+/* 헤딩 태그 */
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+}
+
+/* 임시 표시 */
+.ibx h2,
+.ibx h1{
+    position: absolute;
+    width: 100%;
+    font-size: 5vw;  
+    text-align: center;
+}
+
+.cont h2{
+    line-height: 100vh;
+}
+
+/* 공통 파티션 12그리드 클래스 */
+/* col-숫자 : 숫자는 기둥의 수 */
+/* 한줄에는 최대한이 12기둥이 되어야한다 */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+.ibx{
+    position: relative;
+    
+    display: flex;
+    flex-wrap: wrap;
+    /* 크기가 넘치면 다음 줄로 내려가라 */
+
+    max-width: 1400px;
+    margin: 0 auto;
+    outline: 1px dashed gray;
+
+    /* 임시 높이 */
+    min-height: 100px;
+}
+
+/* 파티션 박스 */
+.cbx{
+    outline: 1px dotted red;
+}
+
+/* 컨텐스 영역 공통 클래스 */
+.cont{
+    height: 100vh;
+}
+
+/* 상단 영역 */
+.top{
+    height: 120px;
+}
+
+/* 하단 영역 */
+.info{
+    height: 120px;
+}

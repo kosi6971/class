@@ -68,7 +68,7 @@
             /* grid-template-columns: 1fr 3fr 4fr 2fr; */
 
             /* 3. repeat(수치 반복 수, 반복 수치) */
-            /* grid-template-columns: repeat(5, 1fr); */
+            grid-template-columns: repeat(5, 1fr);
 
             /* 3번 repeat()에 대한 다양한 실험 */
             /* grid-template-columns: repeat(2, 300px 1fr 3fr); */
@@ -81,7 +81,19 @@
 
             /* [ 세로 그리드 템블릿 ] */
             /* 1. 구체적인 수치 높이값 쓴 만큼 셋팅 - 나머지는 자동 높이(자동  생성) */
-            grid-template-rows: 100px 200px 300px;
+            /* grid-template-rows: 100px 200px 300px; */
+
+            /* 2. 높이값 전체에서의 비를 쓴 만큼 셋팅 */
+            /* grid-template-rows: 1fr 3fr 5fr 2fr; */
+
+            /* 3. repeat(수치의 반복 수, 반복 수치) */
+            /* grid-template-rows: repeat(4, 300px); */
+
+            /* 4. 모든 높이 값을 동일하게 셋팅 -> grid-auto-row(기본값 auto) */
+            /* grid-auto-rows: 300px; */
+
+
+
 
             /* [ 수평방향 간격 ] */
             grid-column-gap: 1vw;
@@ -96,14 +108,88 @@
             outline: 1px solid red;
         }
 
+        /* 갤러리 div박스에 가상요소 before을 이용하여 비율 만들기 */
+        .grid>div::before{
+            content: '';
+            display: block;
+            padding-top: 142%
+        }
+
+        /* 갤러리 각 박스 공통 */
+        .grid>div{
+            position: relative;
+        }
+
         .grid img{
+            position: absolute;
+            top: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
             /* 비율에 맞춰 이미지를 박스에 채워라 */
         }
 
+        /* 상품 설명 박스 */
+        .grid aside{
+            position: absolute;
+            bottom: 0%;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.37);
+        }
 
+        /* 상품명 글자 박스 */
+        .grid aside h2{
+            font-size: min(2vw, 24px);
+            font-weight: normal;
+            margin: min(1.2vw,14px) 0;
+        }
+
+        /* 상품가격 글자 박스 */
+        .grid aside h3{
+            font-size: min(1.5vw, 18px);
+            font-weight: normal;
+            margin: min(0.5vw, 10px) 0;
+        }
+
+        /* 1100PX 이하 미디어 쿼리 시작 */
+        @media screen and (max-width:1100px) {
+            .grid{
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        @media screen and (max-width:1000px) {
+            .grid{
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media screen and (max-width:800px) {
+            .grid{
+                grid-template-columns: repeat(2, 1fr);
+            }
+            /* 상품명 글자박스 */
+            .grid aside h2 {
+                font-size: 3vw;
+                margin: 2vw 0 0;
+            }
+
+            /* 상품가격 글자박스 */
+            .grid aside h3 {
+                font-size: 2vw;
+                margin: 2vw 0;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .grid{
+                grid-template-columns: repeat(1, 1fr);
+                /* [ 수평방향 간격 ] */
+                grid-column-gap: 0;    
+
+                /* [ 수직방향 간격 ] */
+                grid-row-gap: 0;
+            }
+        }
     </style>
 </head>
 
