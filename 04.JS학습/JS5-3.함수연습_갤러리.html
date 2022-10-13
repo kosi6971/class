@@ -149,30 +149,44 @@
 
 
             // 변경대상1: 메인이미지 - #mbox img
-            
+            const mimg = document.querySelector("#mbox img");
 
             // 변경대상2: 글자박스 - .imgtxt
-            
+            const imgtxt = document.querySelector(".imgtxt");
 
             // 처음글자 넣기 : 각 배너 데이터의 첫번째!
-            
-
+            imgtxt.innerText = itxt[0];
+            imgtxt.style.color = tcolor[0];
 
             // 이벤트 대상: 이동버튼
-            
+            const btn = document.querySelectorAll(".btn");
 
-            // 오른쪽버튼 - 두번째버튼
-            
-
-
-            // 왼쪽버튼 - 첫번째버튼
-            
+            // 이동버튼 클릭 설정
+            btn.forEach((ele, idx) => ele.onclick = () => goSlide(idx));
 
             /**************************************** 
                 함수명: goSlide
                 기능: 갤러리 이미지,글자 변경하기
             ****************************************/
-            
+            const goSlide = dir => { // dir - 버튼 구분(방향) 오른쪽 1, 왼쪽 0
+                // 호출 및 전달값 확인
+                console.log("방향 : ", dir);
+
+                if (dir) { // 1은 true
+                    inum++;
+                    if (inum === 8) inum = 1;
+                } else if (!dir) { // 0은 false
+                    inum--;
+                    if (inum === 0) inum = 7;
+                }
+
+                // 변경 대상 : #mbox img -> mimg -> mimg 변수
+                //  이미지 scr 변경
+                mimg.src = `./images/img${inum}.jpg`;
+                // 추가 내용 변경 : 글자 내용 + 글자색
+                imgtxt.innerText = itxt[inum-1];
+                imgtxt.style.color = tcolor[inum-1];
+            };
 
 
 
@@ -217,14 +231,60 @@
 
             // 자동넘김 버튼 클릭시 인터발함수 셋팅하기!! ///
             // 이벤트 대상: .abtn button
-            
+            const abtn = document.querySelectorAll(".abtn button");
+            console.log(abtn);
 
+            // 인터발용 변수
+            let autoI;
+
+            // 버튼에 클릭 이벤트 설정
+            for(let x of abtn){
+                x.onclick = ()=>{
+                    // 클릭된 요소의 클래스이름 여부
+                    let isB = x.classList.contains("start");
+                    // .classList.contains("클래스명");
+                    // 클래스명이 맞으면 true
+                    console.log(isB);
+
+                    if(isB){ // true는 "자동 넘김"
+                        // 2초 간격 goSlide(1) 호출
+                        // 멈추기 위해 변수에 인터발 할당
+                        autoI = setInterval(()=>goSlide(1) ,2000);
+                    }
+                    else if(!isB){ // false는 "멈춤"
+                    clearInterval(autoI);
+                    }
+                // 버튼 제거
+                x.style.display = "none";
+                abtn[isB ? 1 : 0].style.display = "inline-block";
+                };
+            }
 
             // 타임아웃 함수로 미니언즈 애니하기!!! ////
             // 원리: 미리셋팅된 클래스를 미니언즈요소에
             // 일정시간 후 넣고/빼고/넣기를 해준다!
             // 변경대상: #mini
-            
+            const mini = document.querySelector("#mini");
+
+            // 2초후에 미니언즈 class "on1" 넣기
+            setTimeout(()=>{
+                mini.classList.add("on1");
+            }, 2000);
+
+            // 4초후에 미니언즈 class "on1" 빼기
+            setTimeout(()=>{
+                mini.classList.toggle("on1");
+            }, 4000);
+
+            // 6초후에 미니언즈 class "on2" 넣기
+            setTimeout(()=>{
+                mini.classList.toggle("on2");
+            }, 6000);
+
+            // 8초후에 미니언즈 class "on2" 빼기
+            setTimeout(()=>{
+                mini.classList.replace("on2","on1");
+            }, 8000);
 
         }); /////////// 로드구역 ///////////////////
     </script>

@@ -166,3 +166,19 @@ body{
 .f2 .tbx{
     left: -100%;
 }
+
+/* 이벤트 처리 박스 */
+.evt{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    /* 애니메이션 후 width: 100vw로 변경(js 이용) */
+    height: 100vh;
+    display: flex;
+}
+
+/* 등분할 박스 */
+.evt div{
+    flex: 1;
+}
