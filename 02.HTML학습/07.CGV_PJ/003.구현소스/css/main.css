@@ -45,7 +45,7 @@ a{
 .gnb{
     position: absolute;
     bottom: 10px;
-    right: 13px;
+    right: 20px;
 }
 
 .gnb ul{
@@ -60,12 +60,63 @@ a{
     padding-bottom: 5px;
 }
 
+
+#cam{
+    position: absolute;
+    bottom: -5px;
+    right: -40px;
+}
+
+.gnb:hover #cam img{
+    transform: rotate(0deg);
+    transition-delay: 0s;
+}
+
+.gnb:hover #cam .beam{
+    width: 200px;
+    /* 오버 시에 트렌지션 지연 */
+}
+
+#cam img{
+    width: 40px;
+    transform: rotate(30deg);
+    transition: .5s ease-out .4s;
+    /* 아웃 시 지연 시간 (빔 애니 시간) */
+}
+
+.beam{
+    position: absolute;
+    top: -20px;
+    right: 5px;
+    width: 0px; /* 200px */
+    height: 70px;
+    background: url(../images/bim.png) no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+    transition: .4s ease-out .2s;
+    z-index: -1;
+}
+
 /* 2. 메인영역 */
 .cont{
     /* screen 부모 자격 */
     position: relative;
-    height: 788px;
-    background: url(../images/bg.jpg) no-repeat center;
+    /* height: 788px; */
+    /* -> 비율 유지 박스를 위해 높이를 없앤다 */
+    background: url(../images/bg.jpg) no-repeat center/100% 100%;
+}
+
+/* 비율 유지 가상요소 패딩 주기 */
+.cont::before{
+    content: '';
+    display: block;
+    padding-top: 65.66%;
+    /* 
+        배경 이미지와 같은 비율 계산하기
+        1200:788 = 100:x;
+        x = 788*100/1200
+          = 65.66
+    */
 }
 
 .smenu{
@@ -147,11 +198,11 @@ a{
 
 #screen{
     position: absolute;
-    top: 137px;
-    left: calc(50% - 344px);
-    width: 698px;
-    height: 66px;
-    height: 395px;
+    top: 17.3%;
+    left: 21.4%;
+    width: 58.5%;
+    height: 50.4%;
+    /* 부모는 .cont -> 부모는 비율 유지 박스이므로 %로 설정 */
 }
 
 #screen iframe{
@@ -163,13 +214,19 @@ a{
 /* 예고편 선택 */
 .mlist{
     position: absolute;
-    bottom: 57px;
     /* 앱솔루트는 딱 맞게 작아지기에 부모 박스에 맞춘다 - flex 정렬을 쓰기 위해 */
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    /* 가로 중앙 이동 */
+    bottom: 7%;
+    width: 50%;
 }
 
 /* 상위 li */
 .mlist ul>li{
+    flex: 1;
+    /* 플렉스 자식 요소 등분할 설정 */
+
     position: relative;
     /* 처음은 설명을 안보이게 하기 - 나중에 보이게 할 것 */
     overflow: hidden;
@@ -198,8 +255,9 @@ a{
 }
 
 .mlist img{
-    width: 99px;
-    height: 140px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* 영화 정보 박스 */
@@ -218,7 +276,7 @@ a{
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.507);
-    font-size: 1.2rem;
+    font-size: min(1.3vw, 12px);
     font-family: 'Single Day';
     color: blue;
     line-height: 2;
@@ -234,7 +292,7 @@ a{
 
 .movtxt li:first-child{
     color: aquamarine;
-    font-size: 1.3rem;
+    font-size: min(1.5vw, 12px);
     letter-spacing: -1px;
 }
 
