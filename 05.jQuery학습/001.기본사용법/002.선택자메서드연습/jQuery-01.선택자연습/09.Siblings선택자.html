@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title> Siblings(~) 틸드 선택자 </title>
+<!-- jQuery library -->
+<script src="./jquery-3.6.0.min.js"></script>
+<script>
+	$(()=>{
+		// 크기 설정 크랜지션을 적용하려면 초기값이 필요
+		$("li").css({
+			width:"100px",
+			height:"50px"
+		});
+		
+		// 미션: li 중 하나를 클릭하면 그 뒤의 형제 요소의 li들이 모두
+		// width: 500px, height: 300px로 변경
+		// 배경 이미지를 넣어라
+		// 배경 이미지는 웹 경로로 넣고 트렌지션 설정
+		$("li").click(function(){
+			$("~li", this).css({
+				width:"500px",
+				height:"300px",
+				background:"url(https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/B49D77157DE7CD868FD6CEE45FC3CF6CE8CB1D2AADB80285981EFFD689D3914D/scale?width=1200&aspectRatio=1.78&format=jpeg) no-repeat center/cover",
+				transition:"2s"
+			});
+		});
+
+	});
+</script>
+</head>
+  
+<body>
+
+<div id="container">
+
+ <nav>
+   <ul class="list">
+     <li id="first">One</li>
+     <li id="second">Two</li>
+     <li id="third">Three</li>    
+     <li id="fourth">four</li>  
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+	 <li>하나더</li>
+  </ul>
+ </nav>
+ 
+
+</div>
+
+<!---------- jQuery code Start ---------->
+
+<script>
+
+</script>
+
+</body>
+</html>
+

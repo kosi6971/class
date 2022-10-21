@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title> child(&gt;)선택자 </title>
+  <!-- jQuery library -->
+  <script src="./jquery-3.6.0.min.js"></script>
+  <script>
+    $(() => {
+      // 미션: #container를 클릭하면 이것의 직계자식인 p태그의
+      // 배경색을 노란색, 글자색은 녹색, 글자크기는 42px, 테두리는 5px 점선 빨간색
+      $("#container").click(function () {
+        // $("#container>p")
+        $(">p", this).css({
+        // $(선택자, this)
+        // this 키워드를 사용한 직계선택법
+        // 선택자에 >를 사용
+          backgroundColor: "yellow",
+          color: "green",
+          fontSize: "42px",
+          border: "5px dotted red"
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  <div id="container">
+
+    <header>
+      <h2> Welcome mySite </h2>
+      <p>나는 손자 p태그다!</p>
+    </header>
+
+    <nav>
+      <ul class="list">
+        <li id="first">One</li>
+        <li id="second">Two</li>
+        <li id="third">Three</li>
+      </ul>
+    </nav>
+
+    <p>
+      나는 직계자식 p태그다!
+    </p>
+
+  </div>
+
+  <!---------- jQuery code Start ---------->
+  <script>
+
+  </script>
+
+</body>
+
+</html>
