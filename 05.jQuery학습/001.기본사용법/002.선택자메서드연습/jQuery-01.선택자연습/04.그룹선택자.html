@@ -3,7 +3,27 @@
 <head>
 <meta charset="utf-8">
 <title> 그룹 선택자  </title>
+<script src="./jquery-3.6.0.min.js"></script>
+<script>
+  $(()=>{
+   // 미션 : p태그 또는 #nav li태그를 클릭 시
+   // 글자를 나야나, 글자 크기를 72px, 글자색을 빨간색
+   // transution: all .4s
+   $("p,#nav li").click(function(){
+      // 클릭된 자기 자신 요소는 this
+      // ()=>{}함수는 this가 아닌 event.CurrentTarget을 사용
+      // 익명함수에 이벤트 전달 변수(e 사용 시)를 사용하여 e.CurrentTarget 사용 가능
+      $(this).text("나야나")
+      .css({
+         fontSize:"72px",
+         color:"red",
+         transution:".4s"
+      });
 
+   });
+  });
+
+</script>
 </head>
   
 <body>

@@ -4,7 +4,36 @@
 <head>
   <meta charset="utf-8">
   <title> 클래스 선택자 </title>
-  
+  <script src="./jquery-3.6.0.min.js"></script>
+  <script>
+    $(()=>{
+      // 미션 : 클래스가 .tit인 요소를 클릭히면 .group인 요소의 하위 li를 순서대로
+      // 글자 크기 50px 배경색 각 각 lime, yellow, pink margin-left는 100px
+      // 1초 간격으로 1초동안 변경
+      $(".tit").click(()=>{
+        $(".group>li:nth-child(1)").css({
+          fontSize:"50px",
+          backgroundColor:"lime",
+          marginLeft:"100px",
+          transition:"1s ease-in-out"
+        });
+
+        $(".group>li:nth-child(2)").css({
+          fontSize:"50px",
+          backgroundColor:"yellow",
+          marginLeft:"100px",
+          transition:"1s ease-in-out 1s"
+        });
+
+        $(".group>li:nth-child(3)").css({
+          fontSize:"50px",
+          backgroundColor:"pink",
+          marginLeft:"100px",
+          transition:"1s ease-in-out 2s"
+        });
+      });
+    });
+  </script>
 
 </head>
 

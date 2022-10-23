@@ -4,7 +4,23 @@
 <meta charset="utf-8">
 <title> 전체 선택자 (*) </title>
 <!-- jQuery library -->
+<script src="./jquery-3.6.0.min.js"></script>
+<script>
+  $(()=>{
+    // 미션 : body를 클릭하면 모든 요소를 선택하여(*)
+    // 인터넷으로 검색한 이미지 주소를 배경 이미지로 설정
+    // width:200px. height:200px로 설정
+    $("body").click(()=>{
+      $("body *").css({
+        background:"url(https://mblogthumb-phinf.pstatic.net/MjAxOTA4MTFfMTA2/MDAxNTY1NTE2ODUyNDI4.C0IrEvRkqqKKpZHJszebfMRGK2moIn4GLkYVTKZu8V4g.b9MC4Chb1X8Lnyk2kjQ6g5Wa7PXSWt9kKbbGVRN8LGUg.PNG.azzi_01/%EC%86%8D%EC%83%81%ED%95%B4.png?type=w800) no-repeat center/cover",
+        width:"200px",
+        height:"200px"
+      })
+    });
 
+  });
+
+</script>
 </head>
   
 <body>
