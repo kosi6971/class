@@ -54,10 +54,22 @@
 			
 			// 이벤트 대상: #selnum
 			$("#selnum").change(function(){
-				
+				// 선택값 불러오기
+				let img = $("#selnum").val();
 				// 배경 이미지 넣기
 				$("body").css({
 					background:`url(img/${img}.jpg) no-repeat center/cover`
+				});
+
+				// 초기화(모두 투명화)
+				$(".nav1 li").css({
+					backgroundColor:"transparent"
+				});
+
+				// 순번을 사용하여 .nav1 li의 같은 순번 배경색 변경
+				// :eq(순번) -> 제이쿼리 적용
+				$(`.nav1 li:eq(${img})`).css({
+					backgroundColor:"red"
 				});
 			});
 		});
