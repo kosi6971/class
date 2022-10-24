@@ -12,9 +12,57 @@
 			width: 100%;
 			height: 100%;
 		}
+		.nav1{
+			/* 영역 선택 안되게 만들기 */
+			user-select: none;
+			/* 드래그 안되게 하기 */
+			-webkit-user-drag: none;
+		}
 	</style>
-	
+	<script src="./jquery-3.6.0.min.js"></script>
+	<script src="./jquery-ui-1.8.23.custom.min.js"></script>
+	<script>
+		$(()=>{
+			// 기본 글자 변경
+			$(".nav1>li, #selnum").css({
+				fontSize:"42px",
+				textShadow:"1px 1px 1px",
+				cursor:"pointer",
+				width:"400px",
+				whiteSpace:"nowrap"
+			});
+			// 1차 미션: .nav1 아래 li를 클릭 시 클릭된 li의
+			// 글자 크기 5px 글자색은 무지개색 순서로 변경
 
+			// 무지개색 배열
+			const rcolor = ["red","orange","yellow","green", "blue", "navy", "purple"];
+			// 배열 순번 변수
+			let csep = 0;
+
+			$(".nav1>li").click(function(){
+				$(this).css({
+					fontSize:"+=5px",
+					color:rcolor[csep]
+				});
+				++csep;
+				if(csep===7)csep=0;
+			});
+
+			// 2차 미션: 선택박스의 선택을 변경하는 순간
+			// 선택된 이름의 배경색을 무지개색 순번으로 변경
+			// 동시에 배경 이미지를 body에 해당 이름과 미칭하여 넣으시오
+
+			let img = document.querySelectorAll("#selnum").values;
+			
+			// 이벤트 대상: #selnum
+			$("#selnum").change(function(){
+				// 배경 이미지 넣기
+				$("body").css({
+					background:`url(img/${img}.jpg) no-repeat center/cover`
+				});
+			});
+		});
+	</script>
 </head>
 
 <body>
