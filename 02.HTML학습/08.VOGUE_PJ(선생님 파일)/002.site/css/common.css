@@ -47,14 +47,103 @@
     background: url(../images/sns_kakao.png) no-repeat center/auto 100%;
 }
 
+.smbx{
+    display: flex;
+    justify-content: flex-end;
+    font-family: "Roboto", nbg;
+    font-size: 12px;
+}
+
+.smbx>li>a{
+    display: block;
+    padding: 0 13px;
+    line-height: 44px;
+    color: #747474;
+}
+
+/* 사이드 메뉴 상위 첫 번째 li 구분선 */
+.smbx>li:first-child{
+    border-right: 1px solid #e5e5e5;
+}
+
+/* 사이드 메뉴 서브 박스 */
+.smsub{
+    position: absolute;
+    margin-left: 1px;
+    border: 1px solid #e5e5e5;
+    opacity: 0;
+    /* 처음에 높이값 0 */
+    height: 0;
+    overflow: hidden;
+}
+
+.smbx>li:first-child:hover .smsub{
+    opacity: 1;
+    height: auto;
+    /* auto는 트렌지션을 먹지 않는다 */
+    /* 트렌지션 오버 시에만 적용 */
+    transition: .5s;
+}
+
+/* 서브메뉴 a요소 */
+.smsub a{
+    display: block;
+    padding: 7px 10px;
+    padding-right: 19px;
+    color: #747474;
+
+}
+/* 서브 메뉴 마우스 오버 시 */
+.smsub a:hover{
+    background-color: #fafafa;
+    color: #333;
+}
+
+/* 사이드 메뉴 상위 첫 번째 a요소 커서 */
+.smbx>li:first-child>a{
+    cursor: text;
+    /* 손가락 -> I 모양 */
+    /* 커서 모양값 참고 */
+    /* https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
+}
+
 /* 로고박스 */
 .logo{
     height: 115px;
     text-align: center;
+    margin-bottom: 10px;
 }
 /* GNB박스 */
 .gnb{
+    font-family: "Roboto Condensed";
+    font-size: 16px;
+    line-height: 40px;
     min-height: 46px;
+}
+.gnb ul{
+    display: flex;
+    /* 수평방향 중앙정렬 */
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.gnb li{
+    padding-right: 45px;
+}
+.gnb a{
+    transition: color .2s linear;
+}
+.gnb a:hover{
+    color: red;
+}
+
+/* 마지막 li padding 제거 */
+.gnb li:last-child{
+    padding-right: 0;
+}
+/* 마지막 li a 돋보기 */
+.gnb li:last-child a{
+    font-weight: bold;
+    padding-top: 2px;
 }
 
 /*************** 2. 하단영역 ***************/
