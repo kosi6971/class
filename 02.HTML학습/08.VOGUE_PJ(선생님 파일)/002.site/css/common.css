@@ -149,4 +149,41 @@
 /*************** 2. 하단영역 ***************/
 .info{
     min-height: 286px;
+    background-color: black;
+    padding: 70px;
+    box-sizing: border-box;
+    font-family: "Roboto", nbg;
+}
+
+/* 3-1. 하단로고 */
+.blogo{
+    text-align: center;
+}
+
+/* 3-2. 회사주소 */
+.addr{
+    color: #747474;
+    text-align: center;
+    font-size: 11px;
+    /* address 기본 이텔릭 해제 */
+    font-style: normal;
+    margin: 20px 0 10px;
+}
+
+/* 3-3. 하단링크 */
+.blink{
+    display: flex;
+    /* flex 수평 방향 중앙 */
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.blink a{
+    color: #747474;
+    font-size: 13px;
+    margin: 0 6px;
+}
+
+.blink li:last-child a{
+    font-weight: bold;
 }

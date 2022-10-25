@@ -35,7 +35,7 @@
 			// 글자 크기 5px 글자색은 무지개색 순서로 변경
 
 			// 무지개색 배열
-			const rcolor = ["red","orange","yellow","green", "blue", "navy", "purple"];
+			const rcolor = ["red","orange","yellow","green", "blue", "navy", "purple", "skyblue", "pink"];
 			// 배열 순번 변수
 			let csep = 0;
 
@@ -45,7 +45,7 @@
 					color:rcolor[csep]
 				});
 				++csep;
-				if(csep===7)csep=0;
+				if(csep===9)csep=0;
 			});
 
 			// 2차 미션: 선택박스의 선택을 변경하는 순간
@@ -55,7 +55,14 @@
 			// 이벤트 대상: #selnum
 			$("#selnum").change(function(){
 				// 선택값 불러오기
-				let img = $("#selnum").val();
+				let img = $(this).val();
+
+				// option값이 tt이면 return
+				if(img === "tt"){
+					alert("값을 선택하시오");
+					return;
+				}
+
 				// 배경 이미지 넣기
 				$("body").css({
 					background:`url(img/${img}.jpg) no-repeat center/cover`
@@ -68,8 +75,10 @@
 
 				// 순번을 사용하여 .nav1 li의 같은 순번 배경색 변경
 				// :eq(순번) -> 제이쿼리 적용
+				// sequnce에서 나온말, 순번을 의미
+				// 순번은 0부터 시작
 				$(`.nav1 li:eq(${img})`).css({
-					backgroundColor:"red"
+					backgroundColor: rcolor[img]
 				});
 			});
 		});

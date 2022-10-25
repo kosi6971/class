@@ -4,8 +4,18 @@
 <meta charset="utf-8">
 <title>  gt 선택자 </title>
 <!-- jQuery library -->
-
-
+<script src="./jquery-3.6.0.min.js"></script>
+<script>
+  $(()=>{
+    // :gt(n) -> greater than ~보다 큰
+    // n은 0부터
+    // 사용법: $("선택자:gt(n)")
+    // 미션: 6번째보다 큰 li에 배경 이미지 sample1.jpg를 넣으시오
+    $("li:gt(5)").css({
+      background:"url(sample1.jpg)"
+    });
+  });
+</script>
 </head>
 <body>
 

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG 기본 원리 및 애니메이션</title>
+    <style>
+        html, body{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            background-image: linear-gradient(to bottom, lightgreen, lightpink, lightblue);
+        }
+
+        .wrap{
+            display: flex;
+            flex-wrap: wrap;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .wrap>section{
+            position: relative;
+            /* 가로 세로 등분할 채우기 */
+            flex: 1;
+            /* flex계 width - 한 줄에 2개 씩 */
+            flex-basis: 50%;
+        }
+
+        .cbx{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            outline: 2px dotted blue;
+        }
+
+        /* svg요소 공통 - 도형 다 보이기 */
+        .cbx svg{
+            width: 100%;
+            height: 100%;
+        }
+
+        .svg1{
+            background: url(./images/man.jpg) no-repeat top/cover;
+            border-radius: 50%;
+            box-shadow: 5px 5px 5px black;
+        }
+
+        .svg1 svg{
+            /* svg 자체엔 transform 적용 */
+            transform: rotate(-90deg);
+        }
+
+        .c1{
+            /* 채우기색 - 기본색 검정
+            투명(transparent), 없음(none) */
+            fill: none;
+
+            /* 선색(안쓰면 안나옴) */
+            stroke: red;
+
+            /* 
+                선두께 (안쓰면 1px)
+                -> 단위를 안쓰면 기본 px
+                -> 중심선을 기준으로 생김
+            */
+            stroke-width: 20;
+
+            /* 데쉬선 속성 - 선, 공백 순으로 셋팅 */
+            /* 선, 공백에서 선으로 모두 채우기 */
+            /* 방법: 50%을 준다 > 몇 조각인지 센다 > 50% x (조각 수) */
+            stroke-dasharray: 300%;
+
+            /* 선 끝 속성 : 둥글게 */
+            stroke-linecap: round;
+
+            /* 데쉬선 시작 위치 속성 */
+            stroke-dashoffset: 300%;
+
+            /* 
+                [ 데쉬셋팅을 이용한 SVG 애니 ]
+                1. stroke-dasharray 값을 전체 선으로 채우기
+                2. stroke-dashoffset값을 stroke-dasharray과 같게하여 공백부터 시작
+                (오버 시 선애니할 경우)
+                3. 여기에 트렌지션을 준다
+                4. 오버시 stroke-dashoffset: 0%; 셋팅
+            */
+            transition: stroke-dashoffset .8s ease-in-out;
+            /* transform: rotate(-90deg); */
+            /* svg 선 요소에는 transform을 먹지 않는다 html에 가서 직접설정하거나 svg자체에 설정할 것*/
+        }
+
+        .svg1:hover .c1{
+            stroke-dashoffset: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- 아이언맨 -->
+        <section>
+            <div class="cbx svg1">
+                <svg>
+                    <circle class="c1" cx="150" cy="150" r="140">
+                    <!-- <circle class="c1" cx="150" cy="150" r="140"  transform="rotate(-90,150,150)"> -->
+
+                    </circle>
+                </svg>
+            </div>
+        </section>
+        <section></section>
+        <section></section>
+        <section></section>
+    </div>
+    <!-- 
+        [ SVG란 ]
+        SVG - Scalable Vector Graphic
+        -> 이미지를 확대해도 꺠지지 않는 백처 방식 그래픽 요소
+        -> 이미지가 코드로 이루어져있다
+        -> 백터 그래픽 : 일러스트레이터 같은 툴에서 제작
+        
+        비교) 포토샵에서 픽셀로 만드는 이미지는 비트맵 이미지
+        -> canvas요소 : 비트맵 이미지 그래픽 - canvas는 JS로 코딩
+        (참고 : http://www.effectgames.com/demos/canvascycle/)
+
+        [ SVG요소 표현법 ]
+        - SVG요소 내부에 자식요소로 각 도형요소를 넣고 코딩
+
+        [ circle요소 : 원 ]
+        - cx : 중심원 x좌표(center x), 단위없는 숫자는 px
+        - cy : 중심원 y좌표(center y), 단위없는 숫자는 px
+        - r : 반지름(radius)
+        - transform속성 : svg요소를 변형하기 위한 속성
+            rotate(각도, x위치, y위치)
+            -> 회전속성으로 각도를 단위 없이 사용, 마이너스는 반시계 방향
+            -> 이 속성을 쓰는 이유는 circle에는 일반 transform이 적용되지 않기 때문
+            (svg요소 transform이 적용)
+     -->
+</body>
+
+</html>
