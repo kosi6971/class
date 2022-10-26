@@ -4,8 +4,35 @@
 <meta charset="utf-8">
 <title> not 선택자 </title>
 <!-- jQuery library -->
+<script src="./jquery-3.6.0.min.js"></script>
+<script>
+	$(()=>{
+		/* 
+			:not 선택자 - 선택한 요소 빼고 나머지 선택자 -> 제이쿼리 전용
+		*/ 
+		// 미션 : li를 클릭하면 클릭된 것은
+		// "왕"이라고 글자를 변경하고 크기를 72px로 글자색은 빨간색으로
+		// 변경하는 동시에 나머지 li 제거
+		$("li").click(function(){
+			// 선택된 li
+			$(this).text("왕").css({
+				fontSize:"72px",
+				color:"red",
+				transition:".4s"
+			});
 
+			// 선택되지 않은 li
+			// 선택된 순번이 아닌 것으로 구한다 :not(:eq(n))
+			let idx = $(this).index();
+			// index() - 선택요소의 형제 중 순번을 리턴함
+			console.log("선택된 li 순번 : ", idx);
 
+			// 숨기는 애니메이션
+			// hide(시간) - 시간을 주면 애니메이션되먄서 사라진다(1/1000단위)
+			$(`li:not(:eq(${idx}))`).delay(400).hide(2000);
+		});
+	});
+</script>
 </head>
 <body>
 

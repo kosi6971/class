@@ -4,8 +4,37 @@
 <meta charset="utf-8">
 <title> contains 선택자 </title>
 <!-- jQuery library -->
+<script src="./jquery-3.6.0.min.js"></script> 
+<script>
+  $(()=>{
+    /*
+      :contains(문자) - 선택한 요소 내부 특정문자를 포함하고 있는지
+      
+      [ 제이쿼리 메서드 소개 ]
+      1. delay(시간) - 1/1000초 단위로 뒤에 있는 애니메이션 시작전에 지연시간을 설정해주는 메서드
+      2. hide(시간,이징,함수) - 설정된 시간동안 사라짐(결과 display:none)
+      3. show(시간,이징,함수) - 설정된 시간동안 나타남(결과 display원상복귀)
+      -> show, hide내부의 함수는 콜백함수다!(즉, 애니후 실행함수)
+      4. text(문자) - 선택요소 내부에 글자넣음
+    */ 
 
+    // 미션 : ap라는 문자가 있는 li요소를 선택하여 페이지 로딩 후
+    // 1. 2초 후에 사라지게 한다
+    // 2. 사라진 후 apple라는 단어는 사과로,
+    //    grape이라는 단어는 포도로 글자 변경
+    // 3. 1초간 애니메이션으로 나타나게 하라
+    $("li:contains('ap')").delay(2000).hide(1000, function(){
+      $("li:contains('apple')").text("사과").show(1000);
+      $("li:contains('grape')").text("포도").show(1000);
+    });
 
+    // 미션 : o라는 문자가 있는 li요소를 선택하여 페이지 로딩 후
+    // 1. 4초 후에 사라지게 한다
+    // 2. 사라진 후 lion이라는 단어는 사자로,
+    //    fox라는 단어는 여우라고 글자 변경
+    // 3. 1초간 애니메이션으로 나타나게 하라
+  });
+</script>
 </head>
 <body>
 

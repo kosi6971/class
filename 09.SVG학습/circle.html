@@ -47,6 +47,7 @@
             height: 100%;
         }
 
+        /* 아이언맨 */
         .svg1{
             background: url(./images/man.jpg) no-repeat top/cover;
             border-radius: 50%;
@@ -80,6 +81,12 @@
 
             /* 선 끝 속성 : 둥글게 */
             stroke-linecap: round;
+            /* 
+                stroke-linecap 옵션
+                1) butt - 끝에 중심선이 보임(기본값)
+                2) square - 끝에 사각형으로 덮음 
+                3) round - 끝에 둥근모양으로 덮음
+            */
 
             /* 데쉬선 시작 위치 속성 */
             stroke-dashoffset: 300%;
@@ -100,23 +107,53 @@
         .svg1:hover .c1{
             stroke-dashoffset: 0;
         }
+
+        /* 블랙위도우 */
+        .svg2{
+            background: url(./images/black.jpg) no-repeat top/cover;
+        }
+
+        .rt1{
+            fill: none;
+            stroke: black;
+            /* 선 두께 */
+            stroke-width: 20;
+            /* 선 끝 처리 */
+            stroke-linecap: round;
+
+            stroke-dasharray: 15%;
+            stroke-dashoffset: 102%;
+            transition: stroke-dashoffset .8s ease-in-out;
+        }
+
+        .svg2:hover .rt1{
+            stroke-dashoffset: 0;
+        }
     </style>
 </head>
 
 <body>
     <div class="wrap">
-        <!-- 아이언맨 -->
+        <!-- 아이언맨 : 원 -->
         <section>
             <div class="cbx svg1">
                 <svg>
                     <circle class="c1" cx="150" cy="150" r="140">
                     <!-- <circle class="c1" cx="150" cy="150" r="140"  transform="rotate(-90,150,150)"> -->
-
                     </circle>
                 </svg>
             </div>
         </section>
-        <section></section>
+        <!-- 블랙위도우 : 사각형 -->
+        <section>
+            <div class="cbx svg2">
+                <svg>
+                    <rect class="rt1" width="280" height="280" x="10" y="10">
+
+                    </rect>
+                </svg>
+            </div>
+        </section>
         <section></section>
         <section></section>
     </div>
@@ -133,6 +170,8 @@
 
         [ SVG요소 표현법 ]
         - SVG요소 내부에 자식요소로 각 도형요소를 넣고 코딩
+        (유의사항 : svg는 처음에 px단위의 특정 크기로 만들어야한다.
+        그래야 기본형으로 정하고 유동적인 크기는 viewBox설정으로 얼마든지 변경 가능)
 
         [ circle요소 : 원 ]
         - cx : 중심원 x좌표(center x), 단위없는 숫자는 px
@@ -143,6 +182,12 @@
             -> 회전속성으로 각도를 단위 없이 사용, 마이너스는 반시계 방향
             -> 이 속성을 쓰는 이유는 circle에는 일반 transform이 적용되지 않기 때문
             (svg요소 transform이 적용)
+
+        [rect 요소 : 사각형]
+        - rectangle(사각형)이라는 말에서 나온 요소명
+        - width : 가로
+        - height : 세로
+        - x, y : x축, y축
      -->
 </body>
 
