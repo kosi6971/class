@@ -3,8 +3,34 @@
 <head>
 <meta charset="utf-8">
 <title> Traversal- next </title>
+<script src="./jquery-3.6.0.min.js"></script>
+<script src="./jquery-ui-1.8.23.custom.min.js"></script>
+<script>
+  $(()=>{
+    /*
+      next() - 선택 요소의 다음 형제요소 선택
+      nextAll() - 선택 요소의 다음 형제요소 선택
+    */
+    // 미션 : #part1을 클릭하면 다음 형제요소의 크기를
+    // width:200px,height: 200px; 애니메이션하기
+    // 내부 글자를 kosi로 변경
+    
+    $("#part1").click(function(){
+      $(this).next().animate({
+        width:"200px",
+        height:"200px"
+      },700).text("kosi");
+    });
 
-
+    // 추가 미션 : #sub을 클릭 시
+    // 다음의 형제 요소 모두를 빨간배경색 변경 애니메이션
+    $("#sub").click(function(){
+      $(this).nextAll().animate({
+        backgroundColor:"red"
+      },600);
+    });
+  });
+</script>
 <style>
  div, p {float:left;margin:10px; background-color:#FFF;}
   div#sub { width:80px; height:80px; border:#000 thin solid;}

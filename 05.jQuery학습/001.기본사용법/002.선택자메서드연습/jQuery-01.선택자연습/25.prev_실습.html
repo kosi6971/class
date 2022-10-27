@@ -3,8 +3,65 @@
 <head>
 <meta charset="utf-8">
 <title> Traversal- prev </title>
+<script src="./jquery-3.6.0.min.js"></script>
+<script src="./jquery-ui-1.8.23.custom.min.js"></script>
+<script>
+  $(()=>{
+    /* 
+      prev() - 선택요소의 이전 형제요소 선택
+      prevAll() - 선택요소의 이전 형제요소 전부 선택
+    */
+    // 미션 : 마지막 p태그를 클릭하면 0.5초 간격으로
+    // 이전 형제요소의 배경색을 차례로 넣어라(p태크만)
 
+    // first(), last()는 맨 앞과 맨 뒤를 선택하는 메서드
+   
+    $("#container")
+    .children("p")
+    .last()
+    .click(
+      function(){
+      $(this).animate({
+        backgroundColor:"red"
+      },500)
+    .prev()
+    .delay(1000)
+    .animate({
+      backgroundColor:"yellow"
+    },500)
+    .prev()
+    .delay(2000)
+    .animate({
+      backgroundColor:"lime"
+    },500)
+    .prev()
+    .find("p")
+    .delay(3000)
+    .animate({
+      backgroundColor:"green"
+    },500)
+  });
 
+    // 추가 미션 : .sub 아래 마지작 p태그를 클릭하면
+    // 이전 p태그 모두를 배경색 yellow, 가로 세로 크기 100px, 원으로 변경
+    // 애니메이션해라
+    // prevAll() 사용
+    $(".sub")
+    .find("p")
+    .last()
+    .click(
+      function(){
+      $(this)
+      .prevAll()
+      .animate({
+        backgroundColor:"yellow",
+        width:"100px",
+        height:"100px",
+        borderRadius:"50%"
+      },1000);
+    });
+  }); ///////////// jQB /////////////////
+</script>
 <style>
   div, p {float:left;margin:10px; background-color:#FFF;}
   div#sub { width:80px; height:80px; border:#000 thin solid;}

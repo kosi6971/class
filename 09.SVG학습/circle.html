@@ -129,6 +129,26 @@
         .svg2:hover .rt1{
             stroke-dashoffset: 0;
         }
+
+        /* 3. 닥터스트레인지 */
+        .svg3{
+            background: url(./images/doc.jpg) no-repeat top/cover;
+            clip-path: polygon(50% 0, 100% 33%, 100% 66%, 50% 100%, 0 66%, 0 33%);
+        }
+
+        .pg1{
+            fill: none;
+            stroke: rgb(255, 254, 219);
+            stroke-width: 20;
+            stroke-linecap: round;
+            stroke-dasharray: 300%;
+            stroke-dashoffset: 300%;
+            transition: .4s ease-in-out;
+        }
+
+        .svg3:hover .pg1{
+            stroke-dashoffset: 0;
+        }
     </style>
 </head>
 
@@ -149,12 +169,18 @@
             <div class="cbx svg2">
                 <svg>
                     <rect class="rt1" width="280" height="280" x="10" y="10">
-
                     </rect>
                 </svg>
             </div>
         </section>
-        <section></section>
+        <section>
+            <div class="cbx svg3">
+                <svg>
+                    <polygon class="pg1" points="150,10 290,100 290,200 150,290 10,200 10,100">
+                    </polygon>
+                </svg>
+            </div>
+        </section>
         <section></section>
     </div>
     <!-- 
@@ -183,11 +209,15 @@
             -> 이 속성을 쓰는 이유는 circle에는 일반 transform이 적용되지 않기 때문
             (svg요소 transform이 적용)
 
-        [rect 요소 : 사각형]
+        [rect요소 : 사각형]
         - rectangle(사각형)이라는 말에서 나온 요소명
         - width : 가로
         - height : 세로
         - x, y : x축, y축
+
+        [ polygon요소 : 다각형 ]
+        - point 속성 : 표현법 : <polygon point="x1,y1 x2,y2">
+            -> x, y죄표를 콤마로 구분하고 다른 좌표는 띄오쓰기로 구분
      -->
 </body>
 
