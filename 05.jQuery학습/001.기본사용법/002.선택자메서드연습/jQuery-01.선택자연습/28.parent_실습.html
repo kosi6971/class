@@ -4,8 +4,34 @@
 <head>
   <meta charset="utf-8">
   <title> parent </title>
-  
+  <script src="./jquery-3.6.0.min.js"></script>
+  <script src="./jquery-ui-1.8.23.custom.min.js"></script>
+  <script>
+    $(()=>{
+      /*
+        [ parent() 메서드 ]
+        - 선택요소의 부모 박스를 선택 > 여러 번 사용 시 그만큼 위로 올라간다
+        ex) div>p>a>span구조 : $("span").parent().parent() : p 선택
+      */
 
+      // 미션 : p태그를 클릭하면 부모요소의 배경색을 빨간 색으로 변경
+      // animete() 사용
+      $("p").click(function(){
+        $(this).parent().animate({
+          backgroundColor:"red"
+        }, 1000);
+      });
+
+      // parents(요소명) : 선택요소의 부모 요소 중 특정한 값 찾기
+      // 추가 미션 : a를 클릭하면부모들 중 p태그는 배경색을 노란색,
+      // div태그는 배경색을 녹색으로 변경
+      $("a").click(function(e){
+        e.stopPropagation();
+        $(this).parents("p").animate({backgroundColor:"yellow"}, 500);
+        $(this).parents("#sub").animate({backgroundColor:"green"}, 500);
+      });
+    });
+  </script>
   <style>
     #container {
       border: 3px ridge blue;
