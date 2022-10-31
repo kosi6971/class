@@ -3,6 +3,13 @@
 /* 상단영역 + 하단영역 */
 
 /*************** 1. 상단영역 ***************/
+#top{
+    /* z-index를 위한 position */
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.178);
+}
+
 .top{
     min-height: 206px;
 }
@@ -146,6 +153,81 @@
     padding-top: 2px;
 }
 
+/************ 슬림 상단 디자인 변경 ************/
+/* #top 최상위 박스에 클래스 on을 줘서 적용 */
+/* 상단 영역 최상위 고정 */
+#top.on{
+    position: fixed;
+    /* 기본 상단위에 숨김 */
+    top: -50px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding-top: 5px;
+    transition: .4s ease-out;
+}
+
+/* 스크롤 방향에 따라 top값 변경 */
+#top.on.up{
+    top:0;
+    /* 슬림메뉴를 보이게 하기 */
+}
+
+/* 상단 영역 속박스 최소 높이 해제 */
+#top.on .top{
+    min-height: auto;
+}
+
+/* 탑메뉴 제거 */
+#top.on .tmenu{
+    display: none;
+}
+
+/* 탑로고 사진 설정 */
+#top.on img{
+    width: 100px;
+}
+
+/* 탑로고 설정 */
+#top.on .logo{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    height: auto;
+    margin-bottom: 0;
+}
+
+/* GNB메뉴 설정 */
+#top.on .gnb{
+    font-size: 14px;
+    min-height: 45px;
+}
+
+#top.on .gnb li{
+    padding-right: 35px;
+}
+
+#top.on .gnb li:last-child{
+    padding-right: 0;
+}
+#top.on .gnb a{
+    color: #333;
+}
+
+ /* 미디어 쿼리 */
+ @media screen and (max-width:1420px) {
+    #top.on .gnb{
+        margin-left: 92px;
+    }
+}
+
+ @media screen and (max-width:860px){
+    #top.on .gub{
+        margin-left: 120px;
+    }
+ }
+ 
 /*************** 2. 하단영역 ***************/
 .info{
     min-height: 286px;
