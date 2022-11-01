@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS5-5.클래스</title>
+    <script>
+        /*
+            [ JS 클래스 ]
+            1. ES6버전에서 JS클래스가 도입
+            2. JS 클래스는 JS 객체용 템플릿
+            3. JS클래스는 객체가 아닌 함수의 일종
+            4. JS 객체를 위한 템플릿
+            5. 클래스는 엄격모드("use strict")에서 사용된다
+               (만약 엄격모드를 설정하지 않으면 class를 사용하는 JS는 자동으로 엄격모드로 적용)
+            _______________________________________________
+            (참고: 엄격모드란 JS를 좀 더 엄격하게 문법 적용을 하도록 지정하는 방법)
+            ->  https://www.w3schools.com/js/js_strict.asp
+            ex) 선언 없이 사용하는 변수에 에러 처리
+            _______________________________________________
+            (클래스 구문)
+            class ClassName{
+                constructor(){}
+            }
+            -> 기본적으로 클래스 안에 constructor() 메서드를 필수로 생성
+            객체의 속성을 셋팅하는 역할을 한다 -> 일명 속성셋팅 메서드라고도 한다 
+            공식 명칭 : 생성자 메서드
+            _______________________________________________
+            (클래스 메서드)
+            class ClassName{
+                constructor(){}
+                method_1(){}
+                method_2(){}
+                method_3(){}
+            }
+            -> 메서드를 추가해서 만들 경우, constructor() 메서드 아래에 하나씩 생성      
+            ________________________________________________
+             클래스로 객체 모델:
+            1. 속성 5가지 - 제목, 개요, 감독, 출연, 문구
+            2. 함수 1가지 - 실행 함수
+            {
+                제목 : "",
+                개요 : "",
+                감독 : "",
+                출연 : "",
+                문구 : "",
+                함수 : function(){}
+            }
+         */ 
+
+        class MovieInfo{
+            // 생성자 메서드 : 주로 속성만 셋팅
+            constructor(tit, sum, dir, act, des){
+                this.제목 = tit;
+                this.개요 = sum;
+                this.감독 = dir;
+                this.출연 = act;
+                this.문구 = des;
+            }
+
+            // 만들고자 하는 메서드는 따로 생성
+            메서드(msg){
+                return `영화 ${this.제목}의 감독님 이름은 ${this.감독}, 나의 응원은 ${msg}`;
+            }
+        }
+
+        // 클래스는 함수와 달리 호이스팅이 불가 - 클래스 안에서 호출 불가
+        // typeof변수 : 변수(객체, 클래스)의 데이터형을 리턴
+        console.log(typeof MovieInfo);
+
+        document.write("<h1>JS5-5. JS 클래스</h1>");
+
+        // 클래스 객체 만들기
+        const mi1 = new MovieInfo("이웃사촌", "드라마, 코미디", "이환경", "정우, 김희원", "이웃을 사랑합시다");
+
+        // 클래스를 new키워드로 생성하는 것이 객체인지 확인
+        console.log(mi1)
+
+        // 만들어진 객체를 화면에 출력 : for in 사용
+        for (const x in mi1) {
+            document.write(`<h2>${x} : ${mi1[x]}</h2>`);      
+        }
+        // -> 생성자 함수와 달리 클래스는 객체 찍기에서 메서드가 별도로 관리되고
+        // constructor로 생성된 속성만 찍는다
+
+        // 객체 메서드 호출
+        document.write(`<h2>${mi1.메서드("kosi")}</h2>`);
+
+        document.write(`<hr>`);
+
+        // 클래스를 이용한 객체를 하나 더 만들고 화면에 찌기
+        const mi2 = new MovieInfo("시동", "코미디, 액션, 드라마, 청춘, 느와르, 요리, 범죄, 학원", "최정열", "마동석, 박정민, 정해인, 염정아, 최성은", "동명의 웹툰을 원작으로 한 마동석, 박정민 주연의 한국 영화") ;
+
+        console.log(mi2);
+
+        for (const y in mi2) {
+            document.write(`<h2>${y} : ${mi2[y]}</h2>`);
+        }
+
+        document.write(`<h2>${mi2.메서드("kosi")}</h2>`);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
