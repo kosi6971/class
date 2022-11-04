@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS5-5.2.JS클래스-상속 + 겟터, 셋터</title>
+    <script>
+        /*
+            [ 클래스 상속 ]
+            1. 클래스 상속은 extends 키워드 사용
+            2. 클래스 상속으로 생성된 자식 클래스는
+               부모 클래스의 모든 속성과 메서드를 상속한다
+            3. 상속은 코드를 재사용하는 대표적인 방법
+
+            [ super 메서드 ]
+            1. 부모 클래스를 참조한다
+            2. 부모 생성자 메서드를 호출한다
+            3. 부모 클래스의 속성과 메서드에 접근 가능하다
+            4. 부모 클래스의 메서드는 선별적으로 가져올 수 있다
+               -> super.부모메서드() : 여기서는 super 키워드만 사용
+            _____________________________________________________________________
+            [ 겟터와 셋터 ]   
+            1. 클래스의 특정 속성에 대하여 겟터와 셋터를 설정할 수 있다
+            2. 겟터(Getter) : 값을 리턴
+               get 겟터명(){
+                    return this.속성변수
+               }
+            3. 셋터(Setter) : 값을 셋팅
+               set 셋터명(전달변수){
+                    this.속성변수 = 전달 변수
+               }
+            4. 값 호출 : 겟터명을 변수 호출
+            5. 값 셋팅 : 셋터변수에 할당
+            (주의사항)
+            -> 겟터명과 셋터명은 동일
+            -> 사용 시 변수처럼 사용(소괄호X)
+            -> 호출 시엔 본래 클래스 멤버 속성을 사용할 수 있다
+            -> 값 셋팅은 셋터를 사용(원본에 할당도 가능)
+            -> 겟터, 셋터 사용 목적은 값에 대한 유효성 검사
+            _____________________________________________________________________
+
+            [ 상속 모델 시나리오 ]
+            1. 영화진흥위원회에서 전체 영화정보에 대한 기준을 마련하여
+               클래스로 공개를 했다
+            2. 각 영화상영관 사이트에서 이 기준을 따르기로 하고 클래스를 상속한다
+            3. 각 상영관은 자신에 맞는 별도의 상속과 메서드를 구연하여 사용
+        */ 
+
+        // 영화진흥위원회의 부모 클래스
+        class MovieInfo{
+            // 생성자 메서드 : 주로 속성만 셋팅
+            constructor(tit, sum, dir, act, des){
+                this.제목 = tit;
+                this.개요 = sum;
+                this.감독 = dir;
+                this.출연 = act;
+                this.문구 = des;
+            }
+
+            // 만들고자 하는 메서드는 따로 생성
+            메서드(msg){
+                return `영화 ${this.제목}의 감독님 이름은 ${this.감독}, 나의 응원은 ${msg}`;
+            }
+        }
+
+        // CGV 영화상영관 클래스
+        class CGV extends MovieInfo{
+            // 속성  셋팅 생성자 메서드는 필수
+            // 기본적으로 부모 생성자 메서드 전달변수 사용
+            constructor(tit, sum, dir, act, des, msg, num){
+                // super() 메서드 : 부모 생성자, 메서드 호출
+                super(tit, sum, dir, act, des);
+
+                // CGV만의 개별 속성
+                this.극장안내 = msg;
+                this.수용인원 = num;
+            }
+
+            // CGV만의 메서드
+            // this.메서드()는 부모 클래스의 메서드(접근 가능)
+            // super.보무메서드() -> 이 방법으로 부모 메서드를 가져온다
+            show(mm){ // mm은 부모 메서드에 전달값 변수
+                return super.메서드(mm)+", CGV 안내 : "+this.극장안내;+", 수용인원 : "+this.수용인원;
+            }
+
+            // 겟터 셋터 셋팅
+            // 목적 : 수용 인원 속성값에 대한 유효성 검사
+            get people(){
+                return this.수용인원;
+            }
+            set people(n){ // n - 셋팅값
+                // 숫자가 아니면 걸러주기
+                if(isNaN(n)) n = "출력 불가"
+                this.수용인원 = n;
+            }
+        }
+
+        // CGV클래스로 객체 생성
+        const cgv = new CGV(
+            // 부모 클래스용 전달값
+            "이웃사촌",
+            "드라마, 코미디",
+            "이환경",
+            "정우, 김희원",
+            "이웃을 사랑합시다",
+            // 자식 클래스용 전달값
+            "CGV는 항상 영화팬들과 함께",
+            300
+        );
+        console.log(cgv);
+
+        // CGV 화면 출력 : 객체 = for-in
+        for (let x in cgv) {
+            document.write(`<h2>${x}</h2> : ${cgv[x]}`);
+        }
+        // 객체 메서드 호출
+        document.write(`<h2>메시지 : ${cgv.show("kosi")}</h2>`);
+        // 겟토, 셋터 셋팅 후엔 이것을 사용
+        // cgv.수용인원 -> cgv.people 사용
+        document.write(`<h2>수용인원 : ${cgv.people} (2021)</h2>`);
+        // 변경값 적용
+        // cgv.수용인원 = "사백오십"; // 변경 -> 데이터 문제 해결 : get set 사용
+        // 겟터, 셋터를 셋팅했으므로 사용
+        cgv.people = "사백오십"; // 셋터로 셋팅
+        document.write(`<h2>수용인원 : ${cgv.people} (2022)</h2>`); // 켓터로 읽기
+
+
+        document.write("<hr>");
+
+
+        // MegaBox 영화상영관 클래스
+        class MegaBox extends MovieInfo{
+            // 속성  셋팅 생성자 메서드는 필수
+            // 기본적으로 부모 생성자 메서드 전달변수 사용
+            constructor(tit, sum, dir, act, des, msg, num){
+                // super() 메서드 : 부모 생성자, 메서드 호출
+                super(tit, sum, dir, act, des);
+
+                // MegaBox만의 개별 속성
+                this.팝콘소식 = msg;
+                this.상영관수 = num;
+            }
+
+            // MegaBox만의 메서드
+            // this.메서드()는 부모 클래스의 메서드(접근 가능)
+            // super.보무메서드() -> 이 방법으로 부모 메서드를 가져온다
+            show(mm){ // mm은 부모 메서드에 전달값 변수
+                return super.메서드(mm)+", 팝콘소식 : "+this.팝콘소식;+", 상영관수 : "+this.상영관수;
+            }
+
+            // 겟터 셋터 셋팅
+            // 목적 : 수용 인원 속성값에 대한 유효성 검사
+            get hallNum(){
+                return this.상영관수;
+            }
+            set hallNum(n){ // n - 셋팅값
+                // 숫자가 아니면 걸러주기
+                if(isNaN(n)) n = "출력 불가"
+                this.상영관수 = n;
+            }
+        }
+
+        // MegaBox 객체 생성
+        const megabox = new MegaBox(
+            "시동",
+            "코미디, 액션, 드라마, 청춘, 느와르, 요리, 범죄, 학원",
+            "최정열",
+            "마동석, 박정민, 정해인, 염정아, 최성은",
+            "동명의 웹툰을 원작으로 한 마동석, 박정민 주연의 한국 영화",
+            // 메가박스 전용
+            "팝콘 맛있졍",
+            50
+        );
+
+        // megabox 화면 출력 : 객체 = for-in
+        for (let x in megabox) {
+            document.write(`<h2>${x}</h2> : ${megabox[x]}`);
+        }
+        // 객체 메서드 호출
+        document.write(`<h2>메시지 : ${megabox.show("kosi")}</h2>`);
+        // 겟토, 셋터 셋팅 후엔 이것을 사용
+        // megabox.상영관수 -> megabox.hallNum 사용
+        document.write(`<h2>상영관수 : ${megabox.hallNum} (2021)</h2>`);
+        // 변경값 적용
+        // megabox.상영관수 = "사백오십"; // 변경 -> 데이터 문제 해결 : get set 사용
+        // 겟터, 셋터를 셋팅했으므로 사용
+     megabox.hallNum = "사백오십"; // 셋터로 셋팅
+        document.write(`<h2>상영관수 : ${megabox.hallNum} (2022)</h2>`); // 켓터로 읽기
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

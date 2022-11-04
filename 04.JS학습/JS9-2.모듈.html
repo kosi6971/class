@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS9-2.JS 모듈
+    </title>
+    <style>
+        body{
+            text-align: center;
+            font-size: 20px;
+            line-height: 1.8em;
+        }
+    </style>
+    <script src="./module/main.js" type="module"></script>
+    <!-- 
+        스크립트 호출 시 type="module"이라고 써야 모듈화 문법인 import를 사용 가능
+        그리고 동시에 자동으로 defer가 셋팅(써줄필요 X)
+     -->
+</head>
+<body>
+    <h1>Javascript Module</h1>
+    <!-- 모듈 내용 출력 박스1 -->
+    <div class="tpart"></div>
+    <!-- 모듈 내용 출력 박스2 -->
+    <p id="demo"></p>
+    <!-- 모듈 내용 출력 박스3 -->
+    <div class="mvpart"></div>
+</body>
+</html>
