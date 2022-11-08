@@ -153,16 +153,21 @@ font-family: 'Roboto Condensed', sans-serif;
   left: 0;
   width: 100%;
   /* 부모는 .cbx */
-  padding: 50px;
+  padding: min(3.4vw, 50px);
   /* 보더, 패딩 포함 크기 유지 박스 */
   box-sizing: border-box;
 
   /* 글자 설정 - 영문체, 한글체 */
   font-family: pist, nbg;
-  font-size: 33px;
+  font-size: min(3vw, 33px);
   color: white;
   font-weight: normal;
   text-align: center;
+}
+
+/* 컨텐츠 타이츨 작은 글자 */
+.cbx h2 small{
+  font-size: 14px;
 }
 
 /* 2-7. 배경 공통 적용 클래스 */

@@ -4,7 +4,10 @@
 // $(document).ready(function(){});
 
 $(()=>{
-    console.log("로딩완료");
+    // console.log("로딩완료");
+
+    // 부드러운 스크롤 호출(제이쿼리 아님)
+    startSS();
 
     // 스크롤 이벤트 구역
     // 이벤트명 : scroll
@@ -42,7 +45,7 @@ $(()=>{
         // offset().top -> 맨 위에서 부터 top위치값
     });
 
-    console.log(scpos);
+    // console.log(scpos);
     
     // 스크롤 이벤트 함수
     $(window).scroll(function(){
@@ -59,7 +62,7 @@ $(()=>{
         scTop = $(this).scrollTop();
         // scrollTop() 메서드 : 세로 스크롤 위치값을 return하는 메서드
 
-        console.log(scTop);
+        // console.log(scTop);
 
         // 슬림 메뉴 클래스 on 적용
         // 기준 위치 : 스크롤 100px 이상
@@ -127,6 +130,11 @@ $(()=>{
         // scrollTop 속성은 제이쿼리 전용
         // 세로 스크롤 위치값을 셋팅할 수 있다
         // 참고) 가로 스크롤은 scrollLeft
+
+        // 부드러운 스크롤 적용으로 스크롤위치값을 갱신해줘야 이동에 대한 싱크가 맞는다
+        // 안할 경우, 위치 이동 후 부드러운 스크롤 위치로 이동
+        // pos 전역 분수에 값 넣기
+        pos = 0;
     });
 
 });
