@@ -63,8 +63,8 @@ $(()=>{
 
 
         // 공통함수 : actMini()
-        const actMini = (ele, seq, mtxt)=>{
-            // 전달값(ele-버튼 요소, seq-방순번, mtxt-메시지)
+        const actMini = (ele, seq, fn)=>{
+            // 전달값(ele-버튼 요소, seq-방순번, fn-콜백함수)
             // 클릭된 버튼 제거
             $(ele).slideUp(300);
             // .slideUp(시간, 이징, 함수);
@@ -75,18 +75,6 @@ $(()=>{
             // fadeOut(시간, 이징, 함수)
             // 서서히 사라짐, 사라진후 display: none;처리
 
-            // 대사 함수 : msgFn() + 다음 버튼 보이기
-            const msgFn = txt=>{
-                msg.text(txt).fadeIn(300);
-                // fadeIn(시간, 이징, 함수)
-                // 서서히 나타남
-                // 다음 버튼 보이기
-                $(ele).next().delay(500).slideDown(300);
-                // slideDown(시간, 이징, 함수);
-                // 자동으로 원래 높이값 복원 애니
-                // 최초 상태는 항상 display: none이다
-            };
-            
              // 이동하기
              // 위치 : li 8번방 -> bd변수에 모든 li가 있다
              let pos = [];
@@ -103,44 +91,133 @@ $(()=>{
              mi.animate({
                  top:pos[0]+"px",
                  left:pos[1]+"px",
-             }, 600, "easeOutBounce", msgFn(mtxt));
+             }, 600, "easeOutBounce", fn); // 메시지 호출 : 콜백함수
              // animate({CSS설정}, 시간, 이징, 함수);
              // 모든 제이쿼리 애니메이션 메서드에는 끝난 후 실행함수가 있다(컬백함수)
         };
         // 들어가기 버튼 클릭 시
         btns.first().click(function(){
-           actMini(this, 8, "와~ 아늑하다! 옆방으로 가보자!");
+            // 이동 후 함수
+            let fn = ()=>{
+                msg.text("와~ 아늑하다! 옆방으로 가보자!").fadeIn(300);
+                // fadeIn(시간, 이징, 함수)
+                // 서서히 나타남
+                // 다음 버튼 보이기
+                $(this).next().delay(500).slideDown(300);
+                // slideDown(시간, 이징, 함수);
+                // 자동으로 원래 높이값 복원 애니
+                // 최초 상태는 항상 display: none이다
+            };
+
+           actMini(this, 8, fn);
         })
         // 옆방으로! 버튼 클릭 시
         .next().click(function(){
-            actMini(this, 9, "악!!!! 좀비! 어서 피하자!");
+            // 일반익명함수로 해야 this 버튼이다
+            // ()=>{}는 내부의 this가 바깥으로 나가 window가 잡힌다
+            // 이동 후 함수
+            let fn = ()=>{
+                bd.eq(9).find(".mz").delay(1000).fadeIn(1000, ()=>{
+                    // function(){} - 내부의 this의마가 달라진다
+                    // 화살표함수는 바깥을 싸고 있는 function 익명함수의 주인인 this의 this이다
+                    msg.text("악!!!! 좀비! 어서 피하자!").css({
+                        left:"-87%"
+                    }).fadeIn(300);
+                    $(this).next().delay(500).slideDown(300);
+                });
+            };
+
+           actMini(this, 9, fn);
         })
         // 윗층으로 도망가! 버튼 클릭 시
         .next().click(function(){
-            actMini(this, 7, "와~ 아늑하다! 옆방으로 가보자!");
+            // 이동 후 함수
+            let fn = ()=>{
+                msg.text("여긴 없겠지?").fadeIn(300);
+
+                bd.eq(7).find(".mz").delay(1000).fadeIn(1000, ()=>{
+                    msg.text("악! 여기도!");
+                    $(this).next().delay(500).slideDown(300);
+                });
+            };
+
+            actMini(this, 7, fn);
         })
         // 다시옆방으로! 버튼 클릭 시
         .next().click(function(){
-            actMini(this, 6, "와~ 아늑하다! 옆방으로 가보자!");
+            // 이동 후 함수
+            let fn = ()=>{
+                msg.text("무서워..").fadeIn(300).delay(1000).fadeIn(300,()=>{
+                // 1초 지연(지연시간은 애니메이션메서드 앞)
+                    msg.text("음...윗층으로 가자...").fadeIn(300);
+                    $(this).next().delay(500).slideDown(300);
+                });    
+            };
+
+            actMini(this, 6, fn);
         })
         // 무서우니 윗층으로! 버튼 클릭 시
         .next().click(function(){
-            actMini(this, 4, "와~ 아늑하다! 옆방으로 가보자!");
+            // 이동 후 함수
+            let fn = ()=>{
+                // 무.서.워...메시지
+                msg.text("무").fadeIn(200).delay(500)
+                .fadeIn(200, ()=>msg.text("무.")).delay(500)
+                .fadeIn(200, ()=>msg.text("무.서")).delay(500)
+                .fadeIn(200, ()=>msg.text("무.서.")).delay(500)
+                .fadeIn(200, ()=>msg.text("무.서.워")).delay(500)
+                .fadeIn(200, ()=>msg.text("무.서.워.")).delay(500)
+                .fadeIn(200, ()=>msg.text("무.서.워..")).delay(500)
+                .fadeIn(200, ()=>msg.text("무.서.워...")).delay(500)
+                .fadeIn(200, ()=>{
+                    // 7번 방 좀비가 올라와 공격
+                    bd.eq(7).find(".mz").animate({ // 윗 층으로 올라온다
+                        bottom:bd.eq(7).height()+"px"
+                    }, 500, "easeOutElastic").delay(500).
+                    animate({
+                        right:(bd.eq(7).width()*1.2)+"px"
+                    }, 1000, "easeOutBounce", ()=>{
+                        // 물린 후 대사
+                        msg.css({left:"-110%"}).text("물렸당! 어서 치료를!");
+                        // 미니언즈 좀비 이미지 변경
+                        setTimeout(()=>{
+                            mi.find("img").attr("src", "images/mz1.png")
+                            .css({filter:"grayscale(100%)"});
+
+                            $(this).next().delay(500).slideDown(300);
+                        }, 1000);
+                    })
+                })
+            };
+
+            actMini(this, 4, fn);
         })
         // 치료주사방으로! 버튼 클릭 시
         .next().click(function(){
-            actMini(this, 2, "와~ 아늑하다! 옆방으로 가보자!");
+            // 이동 후 함수
+            let fn = ()=>{};
+
+            actMini(this, 2, fn);
         })
         // 3번방으로! 버튼 클릭 시
         .next().click(function(){
-            actMini(this, 3, "와~ 아늑하다! 옆방으로 가보자!");
+            // 이동 후 함수
+            let fn = ()=>{};
+
+            actMini(this, 3, fn);
         })
         // 1번방으로! 버튼 클릭 시
         .next().click(function(){
-            actMini(this, 1, "와~ 아늑하다! 옆방으로 가보자!");
+            // 이동 후 함수
+            let fn = ()=>{};
+
+            actMini(this, 1, fn);
         })
         // 헬기를 호출! 버튼 클릭 시
         .next().click(function(){
-            actMini(this, 0, "와~ 아늑하다! 옆방으로 가보자!");
+            // 이동 후 함수
+            let fn = ()=>{};
+
+            actMini(this, 0, fn);
         })
 });

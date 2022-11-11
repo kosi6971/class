@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One Page Scroll</title>
+    <title>One Page Scroll - Auto Scroll</title>
     <style>
         html,
         body{
@@ -12,7 +12,8 @@
             width: 100%;
             height: 100%;/* 보이는 화면기준 채우기 */
             /* body하위 요소의 높이값 %의 기준이됨! */
-        }
+            overflow: hidden; /*스크롤바 제거*/
+        }   
         /* 공통셋팅 */
         a{
             text-decoration: none;
@@ -153,25 +154,98 @@
     <script src="./js/jquery-ui.min.js"></script>
     <script>
         $(()=>{
+            // 페이지 이동을 위한 변수
+            let pno =0;
+            // 전체 페이지 수(페이지요소 개수를 할당)
+            let totnum = $(".page").length;
+            console.log(totnum);
+            // 스크롤 금지 변수
+            let prot = 0; // 0 - 허용, 1 - 금지
+
             // a 클릭 시 스크롤 이동 애니메이션 구현
             // 대상 : .gnb a
             $(".gnb a").click(function(e){ // e - 이벤트 전달 변수
                 // a 기본 이동 막기
                 e.preventDefault();
 
-                // 클릭 시 스크롤 위치 아이디 알아내기
-                let idnm = $(this).attr("href");
-                console.log(idnm);
+                // 수정본 : 스크롤바가 없어지면 위치값에 오작동이 나타나므로
+                // 한페이지 단위로 이동한다
+                // 메뉴 li 순번 === 페이지 이동 순번
+                // 이동 단위 : window 높이값
 
-                // 해당 아이디 박스 위치값 알아내기
-                let pos = $(idnm).offset().top
-                // .offset().top - top 위치값 리턴
-                console.log(pos);
+                // 클릭된 a요소의 부모li순번 
+                let idx = $(this).parent().index();
+                // console.log(idx);
+
+                // pno와 씽크 맞추기
+                pno8= idx;
+
 
                 // 위치 이동 스크롤 애니메이션
                 // 전체 스크롤 대상 : html, body(최상위 부모 2개 동시에)
                 $("html, body").animate({
-                    scrollTop:pos+"px"
+                    scrollTop: ($(window).height() * idx)+"px"
+                    // 윈도우(보이는 화면) 높이값*순번
+                }, 800, "easeOutBounce");
+            });
+
+            /*
+                [ 마우스 휠 작동 시 자동 스크롤 이동 기능 ]
+                * 이벤트 : mouwheel + DOMMouseScroll
+                -> wheel이벤트가 최신 이벤트
+                * 대상 : document
+                * 메서드 : $(선택자).on(이벤트명, 함수)
+                -> 이벤트명에 띄어쓰기로 쓰면 다중 이벤트 적용
+            */ 
+            $(document).on("mousewheel wheel", (e)=>{ // e - 이벤트 전달값
+                // 광클 금지
+                if(prot)return;
+                prot = 1;
+                setTimeout(()=>{
+                    prot = 0; // 해제
+                }, 800);
+
+                // e.preventDefault();
+                // 기본 기능 막기는 window, document, body
+                // 세가지 최상위 객체에는 사용할 수 없다(에러)
+
+                // 호출 확인
+                // console.log("스크롤 중")
+
+                // 이벤트 전달 변수 처리
+                e = window.event || e;
+                // 오리지널 이벤트와 전달 이벤트 중 유효한 값을 할당
+                // 변수 = 값 || 값 -> 두 값 중 true인 값을 할당
+
+                // 스크롤 업 다운 여부(휠 방향) 확인
+                // 방향은 델타값 사용
+                let delta =event.wheelDelta || event.detail;
+                // e.wheelDelta - 일반 브라우저용 방향 정보
+                // e.detail - 파이어폭스용 방향정보
+
+                console.log(delta);
+
+                // 름수면 아랫 방향 : 다음 페이지
+                if(delta < 0){
+                    // console.log("down");
+                    pno++;
+                    if(pno === totnum) pno = totnum-1;
+                }
+                else{
+                    pno--;
+                    if(pno === -1) pno = 0;
+                    // console.log("up");
+
+                }
+
+                // 페이지 번호 확인
+                console.log(pno);
+
+                // 위치 이동 스크롤 애니메이션
+                // 전체 스크롤 대상 : html, body(최상위 부모 2개 동시에)
+                $("html, body").animate({
+                    scrollTop: ($(window).height() * pno)+"px"
+                    // 윈도우(보이는 화면) 높이값*순번
                 }, 800, "easeOutBounce");
             });
 
