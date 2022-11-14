@@ -4,6 +4,27 @@ $(()=>{
     console.log("로딩 완료");
 
     /*
+        로그인, 회원가입, 갤러리 아이콘 넣기
+    */ 
+    // 대상 : .sns a:last-child(마지막 카스링크)
+    // 변경 내용 : 대상 요소 앞에 형제 요소로 a요소 삽입
+    // 메서드 : before(요소) -> 선택 요소 앞에 형제 요소로 추가
+    // -> 참고) after(요소) -> 선텍 요소 뒤에 형제 요소로 추가
+    // 선택자 : last (제이쿼리전용)
+    $(".sns a:last").before(`
+        <a href="#" class="fi fi-laptop"><span class="ir">로그인</span></a>
+        <a href="#" class="fi fi-user-secret"><span class="ir">회원가입</span></a>
+        <a href="#" class="fi fi-camera"><span class="ir">갤러리</span></a>
+    `);
+
+    // sns 파트 a요소들에 툴팁넣기
+    // each((순번, 요소)=>{구현부})
+    $(".sns a").each((idx, ele)=>{
+        // attr(속성명, 값) -> 값으로 자식요소인 .ir의 텍스트를 읽어감
+        $(ele).attr("title", $(ele).children(".ir").text());
+    });
+
+    /*
         GNB 메뉴 파트 링크 셋팅
     */ 
     $(".gnb a").click(function(e){ // e - 이벤트 전달 변수

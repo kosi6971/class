@@ -61,7 +61,6 @@ $(()=>{
         // 버튼.숨겨().첫번째().보여()
         btns.hide().first().show();
 
-
         // 공통함수 : actMini()
         const actMini = (ele, seq, fn)=>{
             // 전달값(ele-버튼 요소, seq-방순번, fn-콜백함수)
@@ -178,7 +177,7 @@ $(()=>{
                         right:(bd.eq(7).width()*1.2)+"px"
                     }, 1000, "easeOutBounce", ()=>{
                         // 물린 후 대사
-                        msg.css({left:"-110%"}).text("물렸당! 어서 치료를!");
+                        msg.css({left:"-65%"}).text("물렸당! 어서 치료를!");
                         // 미니언즈 좀비 이미지 변경
                         setTimeout(()=>{
                             mi.find("img").attr("src", "images/mz1.png")
@@ -195,29 +194,118 @@ $(()=>{
         // 치료주사방으로! 버튼 클릭 시
         .next().click(function(){
             // 이동 후 함수
-            let fn = ()=>{};
+            let fn = ()=>{
+                // 주사위 돌기(animate는 transform이 작동하지 않는다)
+                $(".inj").css({
+                    transform:"rotate(-150deg)", // 반시계 방향 회전
+                    transition:".5s .5s", // 0.5초 대시 0.5초간 작동
+                    zIndex:"9999" // 미니언즈보다 위
+                });
+
+                // 미니언즈로 치료(1초후)
+                setTimeout(()=>{
+                    // 이미지 변경
+                    mi.find("img").attr("src", "images/m2.png").css({
+                        filter:"grayscale(0)"
+                    });
+                    // 대사 변경
+                    msg.html("이제 조금만 더 가면 탈출이다!")
+                    .css({left:"-84%"}).fadeIn(1000)
+
+                    // 주사기 제거
+                    $(".inj").hide();
+
+                    $(this).next().delay(500).slideDown(300);
+                }, 1000);
+            };
 
             actMini(this, 2, fn);
         })
         // 3번방으로! 버튼 클릭 시
         .next().click(function(){
             // 이동 후 함수
-            let fn = ()=>{};
+            let fn = ()=>{
+                msg.html("어서 윗층으로 가자!").fadeIn(200);
+
+                $(this).next().delay(500).slideDown(300);
+            };
 
             actMini(this, 3, fn);
         })
         // 1번방으로! 버튼 클릭 시
         .next().click(function(){
             // 이동 후 함수
-            let fn = ()=>{};
+            let fn = ()=>{
+                msg.html("이제 곧 탈출이다!").fadeIn(200);
+
+                $(this).next().delay(500).slideDown(300);
+            };
 
             actMini(this, 1, fn);
         })
         // 헬기를 호출! 버튼 클릭 시
         .next().click(function(){
             // 이동 후 함수
-            let fn = ()=>{};
+            let fn = ()=>{
+                // 메시지 보이기
+                msg.html("도와줘요!").fadeIn(200);
+
+                // 1번방 단체 좀비을 움직임
+                bd.eq(1).find(".mz").fadeIn(300).animate({
+                    right: bd.eq(1).width()+"px"
+                }, 1500, "easeInExpo");
+
+                // 헬기 등장
+                $(".heli").animate({
+                    left:"20%"
+                }, 1800, "easeOutBack", function(){ // this는 .heli
+                    // 헬기 도착 후 탑승이미지로 변경
+                    $(this).attr("src", "images/heli2.png");
+                    // 원본 미니언즈 제거
+                    mi.hide();
+                })
+                .delay(500).animate({
+                    left:"70%"
+                }, 5500, "easeInOutExpo", function(){
+                    $(this).attr("src", "images/heli3.png");
+                })
+                .delay(300).animate({
+                    left:"100%"
+                }, 10000, "linear", ()=>{
+                    // 건물 철거
+                    // 간판 떨어뜨리기
+                    // 중간까지 떨어뜨리기 -> 간판에 class "on"주기
+                    let tit = $(".tit");
+                    tit.addClass("on");
+                    setTimeout(()=>{
+                        // -> 간판에 class "on2"주기
+                        tit.addClass("on2")
+                    }, 3000);
+
+                    // 빌딩 무너뜨리기
+                    // 간판 떨어진 후 6포 후 실행
+                    setTimeout(()=>{
+                        bd.parent().addClass("on")
+                    }, 6000);
+                });
+            };
 
             actMini(this, 0, fn);
-        })
+        });
+
+        // 간판에 마우스 오버 시/아웃 시 색변경
+        // hover(함수1, 함수2)
+        // 함수1 - 오버 시, 함수2 - 아웃 시
+        $(".tit").hover(function(){ // 오버 시
+            $(this).css({
+                backgroundColor:"blue",
+                color:"cyan"
+            });
+        }, function(){ // 아웃 시
+            $(this).css({
+                backgroundColor:"pink",
+                color:"yellow"
+            });
+        });
+
 });
