@@ -1,5 +1,16 @@
 // 보그 PJ 공통JS - common.js
 
+// 현재 페이지명을 알아내어 제어에 활용한다
+// 페이지명 변수
+let pname = location.pathname;
+// location.pathname 페이지명이 포함된 전체 경로
+// split(자를 문자열) -> 배열에 담긴다
+pname = pname.split("/");
+pname = pname[pname.length-1];
+pname = pname.split(".")[0];
+console.log(pname);
+
+
 // 제이쿼리 구역 길게 쓰기도 한다
 // $(document).ready(function(){});
 
@@ -49,6 +60,9 @@ $(()=>{
     
     // 스크롤 이벤트 함수
     $(window).scroll(function(){
+
+        // 슬림메뉴와 상단 이동 버튼 보이기 작동안할 페이지 셋팅
+        if(pname === "login" || pname === "member" || pname === "gallery") return;
 
         // 스크롤 방향 알아내기
         // if(scTop > lastSc){

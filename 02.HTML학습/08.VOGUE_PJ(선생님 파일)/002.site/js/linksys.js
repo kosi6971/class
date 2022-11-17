@@ -21,8 +21,65 @@ $(()=>{
     // each((순번, 요소)=>{구현부})
     $(".sns a").each((idx, ele)=>{
         // attr(속성명, 값) -> 값으로 자식요소인 .ir의 텍스트를 읽어감
-        $(ele).attr("title", $(ele).children(".ir").text());
+        $(ele).attr("title", $(ele).children(".ir").text().trim());
+        // trim() 앞 뒤 공백 제거
     });
+
+    /*
+        sns 메뉴 파트 링크 셋팅하기
+        대상 : .sns a
+    */ 
+   $(".sns a").click(function(e){ // e - 이벤트 전달 변수
+        // a요소 기본 이동 막기
+        e.preventDefault();
+
+        // 1. 클릭된 a요소 텍스트 읽기
+        // -> 실제는 하위 span의 텍스트이므로 앞 뒤 공백이 생긴다. trim() 처리
+        let atxt = $(this).text().trim();
+
+        // 2. 이동할 페이지 주소 할당
+        let url;
+        switch(atxt){
+            case "인스타그램":
+                url="https://www.instagram.com/VOGUEKOREA/"
+                break;
+            case "페이스북":
+                url="https://www.facebook.com/VOGUEkr"
+                break;
+            case "트위터":
+                url="https://twitter.com/VogueKorea"
+                break;
+            case "유튜브":
+                url="https://www.youtube.com/user/VogueKorea?sub_confirmation=1"
+                break;
+            case "로그인":
+                url="login"
+                break;
+            case "회원가입":
+                url="nenber"
+                break;
+            case "갤러리":
+                url="gallery"
+                break;
+            case "카카오스토리":
+                url="https://story.kakao.com/ch/voguekr"
+                break;
+        }
+
+        // 페이지 이동
+        if(atxt === "로그인" || atxt === "회원가입" || atxt === "갤러리")
+            location.href = url + ".html";
+        else
+            // 기타 sns는 새창 열기(window.open())
+            window.open().location.href = url;
+   });
+
+    /*
+        메인로고 링크 셋팅
+    */ 
+   $(".logo a").click(()=>{
+    location.href = "index.html";
+   });
 
     /*
         GNB 메뉴 파트 링크 셋팅
