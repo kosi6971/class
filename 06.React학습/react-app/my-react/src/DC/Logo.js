@@ -1,0 +1,24 @@
+// DC 로고 컴포넌트
+import React from "react";
+import isrc from "./ImgSrc";
+
+const Logo = ()=>{
+    // 객체형 스타일 적용 : 속성명이 틀리면 아예 출력되지 않는다
+    const mystyle={
+        width:"81px",
+        height:"81px",
+        backgroundImage: "linear-gradient(123deg, #ff3c3c, #f5ff3d)",
+        borderRadius: "50%",
+        // outline:"1px solid red"
+    };
+
+    return(
+        <>
+            <h1 style={mystyle}>
+                <img src={isrc.logo} style={{width:"81px"}} />
+            </h1>
+        </>
+    );
+};
+
+export default Logo;
