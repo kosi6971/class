@@ -1,7 +1,6 @@
 import {Outlet, Link} from "react-router-dom";
 import Logo from "./Logo";
 import "./Layout.css";
-import "https://kit.fontawesome.com/a076d05399.js";
 
 /*
     [ 리액트 스타일링 기법 3가지 ]

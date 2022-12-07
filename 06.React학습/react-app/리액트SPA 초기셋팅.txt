@@ -31,7 +31,7 @@ npm uninstall -g create-react-app
 
 3. 새로운 리액트 어플리케이션을 만든다
 npx create-react-app my-react-app
-(my-react-app은 내가 지은 파일명)
+(my-react-app은 내가지은이름)
 
 4. 이미 만들고 깃허브에서 연결하였다면...
 해당 소스까지 들어와서 react와 react-dom을 설치한다!
@@ -51,3 +51,19 @@ http://localhost:3000/
 npm i -D react-router-dom
 최신라우터 업그레이드는 아래 코드
 npm i -D react-router-dom@latest
+
+7. 부트스트랩 추가 설치
+npm install react-bootstrap bootstrap
+
+8. 제이쿼리 추가설치
+npm install jquery
+사용:
+import $ from 'jquery';
+
+9. 배포 명령어
+npm run build
+-> build폴더 생성됨(압축소스)
+
+10.배포 소스 실행용 가상서버 설치
+npm insatll -g serve
+npx serve -s build // 한번만 실행
