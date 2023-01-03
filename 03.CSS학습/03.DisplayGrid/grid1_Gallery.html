@@ -53,121 +53,153 @@
         /* 타이틀 */
         .tit {
             text-align: center;
-            font-size: 3vw;
+            /* 글자 최소크기 지정 */
+            font-size: max(3vw,25px);
         }
 
         /* 그리드 박스 */
-        .grid{
+        .grid {
             display: grid;
 
-            /* [ 가로 그리드 템플릿 ] */
-            /* 1. 가로 사이즈 구체적인 단위를 사용하여 설정하기(수치 개수만큼 컬럼생성) */
-            /* grid-template-columns: 100px 200px 300px 400px; */
+            /* [가로 그리드 템플릿] */
+            /* 1. 가로 사이즈 구체적인 단위사용하여 설정하기
+            (수치개수만큼 컬럼생성) */
+            /* grid-template-columns: 
+            100px 200px 300px 400px; */
 
-            /* 2. fr단위로 가로 전체에 대한 비율을 설정 */
-            /* grid-template-columns: 1fr 3fr 4fr 2fr; */
+            /* 2. fr단위로 가로전체에 대한 비율을 설정 */
+            /* grid-template-columns: 
+            1fr 3fr 5fr 2fr; */
 
-            /* 3. repeat(수치 반복 수, 반복 수치) */
-            grid-template-columns: repeat(5, 1fr);
+            /* 3. repeat(수치의 반복수,반복수치) */
+            grid-template-columns:
+                repeat(5, 1fr);
 
-            /* 3번 repeat()에 대한 다양한 실험 */
-            /* grid-template-columns: repeat(2, 300px 1fr 3fr); */
+            /* 3번 repeat()에 대한 다양한 실험! */
+            /* grid-template-columns: 
+            repeat(2, 300px 1fr 3fr); */
             /* 
-                비율이 여러가지 일 때 띄어쓰기로 표기한다
-                생성되는 설럼수는 
-                (비의 반복 수 * 빈벅 수치의 개 수)
-                -> 위의 예에서 2*3=6 개의 컬럼 생성
+                비율이 여러가지일때 띄어쓰기로 표기함!
+                생성되는 컬럼수는
+                (비의 반복수*반복수치의 개수)
+                -> 위의 예에서 2*3=6 개의 컬럼생성!
             */
 
-            /* [ 세로 그리드 템블릿 ] */
-            /* 1. 구체적인 수치 높이값 쓴 만큼 셋팅 - 나머지는 자동 높이(자동  생성) */
-            /* grid-template-rows: 100px 200px 300px; */
+            /* [ 세로 그리드 템플릿 ] */
+            /* 1. 구체적인 수치 높이값 쓴만큼 셋팅
+            - 나머지는 자동높이!(자동생성값) */
+            /* grid-template-rows: 
+            100px 200px 300px; */
 
-            /* 2. 높이값 전체에서의 비를 쓴 만큼 셋팅 */
+            /* 2. 높이값 전체에서의 비를 쓴만큼 셋팅 */
             /* grid-template-rows: 1fr 3fr 5fr 2fr; */
 
-            /* 3. repeat(수치의 반복 수, 반복 수치) */
-            /* grid-template-rows: repeat(4, 300px); */
+            /* 3. repeat(수치의 반복수, 반복수치) */
+            /* grid-template-rows: repeat(4,300px); */
 
-            /* 4. 모든 높이 값을 동일하게 셋팅 -> grid-auto-row(기본값 auto) */
-            /* grid-auto-rows: 300px; */
-
-
+            /* 4. 모든 높이값을 동일하게 셋팅 
+            -> grid-auto-rows (기본값 auto) */
+            /* grid-auto-rows: 400px; */
 
 
             /* [ 수평방향 간격 ] */
             grid-column-gap: 1vw;
+
             /* [ 수직방향 간격 ] */
-            grid-row-gap: 1vw;
+            grid-row-gap: 1.5vw;
 
-
-
-            /* 최대 크기 */
+            /* 최대크기 */
             max-width: 1200px;
             margin: 0 auto;
-            outline: 1px solid red;
+            /* outline: 2px dotted red; */
         }
 
-        /* 갤러리 div박스에 가상요소 before을 이용하여 비율 만들기 */
-        .grid>div::before{
+        /* 갤러리 div박스에 가상요소 before이용하여
+        비율 만들기! */
+        .grid>div::before {
             content: '';
             display: block;
-            padding-top: 142%
+            padding-top: 142%;
+            /* 이미지의 비율에 맞게 조정함! */
         }
 
-        /* 갤러리 각 박스 공통 */
-        .grid>div{
+        /* 갤러리 각박스 공통 */
+        .grid>div {
+            /* 렐러티브 부모자격 -> ::before */
             position: relative;
         }
 
-        .grid img{
+        /* 갤러리 이미지 - 비율패딩때문에 앱솔루트로 변경! */
+        .grid img {
             position: absolute;
             top: 0;
+            /* 부모는? 싸고있는 div */
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* 비율에 맞춰 이미지를 박스에 채워라 */
+            /* 비율에 맞춰 이미지를
+            박스에 채움! 박스 바깥으로
+            나간이미지부분은 자동숨김 */
+
         }
 
-        /* 상품 설명 박스 */
-        .grid aside{
+        /* 상품설명박스 */
+        .grid aside {
             position: absolute;
-            bottom: 0%;
+            bottom: 0;
             width: 100%;
             text-align: center;
             color: #fff;
-            background-color: rgba(0, 0, 0, 0.37);
+            background-color:
+                rgba(0, 0, 0, 0.471);
         }
 
-        /* 상품명 글자 박스 */
-        .grid aside h2{
-            font-size: min(2vw, 24px);
+        /* 상품명 글자박스 */
+        .grid aside h2 {
+            /* min으로 둘중 작은값(최대크기지정) */
+            font-size: min(1.8vw, 24px);
             font-weight: normal;
-            margin: min(1.2vw,14px) 0;
+            margin: min(1.2vw, 14px) 0 0;
+            /* 마진: 위 양쪽 아래 */
         }
 
-        /* 상품가격 글자 박스 */
-        .grid aside h3{
-            font-size: min(1.5vw, 18px);
+        /* 상품가격 글자박스 */
+        .grid aside h3 {
+            font-size: min(1.4vw, 18px);
             font-weight: normal;
             margin: min(0.5vw, 10px) 0;
         }
 
-        /* 1100PX 이하 미디어 쿼리 시작 */
+        /* 1100px이하 미디어쿼리 시작 */
         @media screen and (max-width:1100px) {
-            .grid{
-                grid-template-columns: repeat(4, 1fr);
+            .grid {
+                /* 가로방향 4개 */
+                grid-template-columns:
+                    repeat(4, 1fr);
             }
         }
+
+        /* 1100px이하 미디어쿼리 끝 */
+
+        /* 1000px이하 미디어쿼리 시작 */
         @media screen and (max-width:1000px) {
-            .grid{
-                grid-template-columns: repeat(3, 1fr);
+            .grid {
+                /* 가로방향 3개 */
+                grid-template-columns:
+                    repeat(3, 1fr);
             }
         }
+
+        /* 1000px이하 미디어쿼리 끝 */
+
+        /* 800px이하 미디어쿼리 시작 */
         @media screen and (max-width:800px) {
-            .grid{
-                grid-template-columns: repeat(2, 1fr);
+            .grid {
+                /* 가로방향 2개 */
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
+
             /* 상품명 글자박스 */
             .grid aside h2 {
                 font-size: 3vw;
@@ -180,16 +212,40 @@
                 margin: 2vw 0;
             }
         }
-        @media screen and (max-width: 600px) {
-            .grid{
-                grid-template-columns: repeat(1, 1fr);
+
+        /* 800px이하 미디어쿼리 끝 */
+
+        /* 600px이하 미디어쿼리 시작 */
+        @media screen and (max-width:600px) {
+            body{
+                margin: 0;
+            }
+            .grid {
+                /* 가로방향 1개 */
+                grid-template-columns:
+                    repeat(1, 1fr);
+
                 /* [ 수평방향 간격 ] */
                 grid-column-gap: 0;    
 
                 /* [ 수직방향 간격 ] */
                 grid-row-gap: 0;
             }
+
+             /* 상품명 글자박스 */
+             .grid aside h2 {
+                font-size: 5.5vw;
+                margin: 4vw 0 0;
+            }
+
+            /* 상품가격 글자박스 */
+            .grid aside h3 {
+                font-size: 4vw;
+                margin: 4vw 0;
+            }
         }
+
+        /* 600px이하 미디어쿼리 끝 */
     </style>
 </head>
 
@@ -197,18 +253,6 @@
     <!-- 타이틀 -->
     <h1 class="tit">그리드1 - 이미지 갤러리</h1>
     <!-- 그리드 레이아웃 박스 -->
-    <!--
-        .grid>div*50>img[src=img_gallery/$.jpg alt=dress]+(aside>h2{상품명$}+h3{상품가격$})
-
-        젠코딩(에밋코딩) 약어 소개
-        -------------------------------------------------
-        * : 여러개
-        > : 자식 요소
-        + : 형제 요소
-        [] : 속성
-        {} : 데이터 -> 태그 내부 값
-        $ : 연속 번호 자리
-    -->
     <div class="grid">
         <div>
             <img src="img_gallery/1.jpg" alt="dress">
@@ -561,6 +605,21 @@
             </aside>
         </div>
     </div>
+
+
+    <!-- 
+        .grid>div*50>img[src=img_gallery/$.jpg alt=dress]+(aside>h2{상품명$}+h3{상품가격$})
+    
+        젠코딩(에밋코딩) 약어소개
+        _____________________
+        
+        * 여러개
+        > 자식
+        + 형제
+        [] 속성
+        {} 데이터 -> 태그내부값
+        $ 연속번호자리
+    -->
 </body>
 
 </html>
